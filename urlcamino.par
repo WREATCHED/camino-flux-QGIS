@@ -1,0 +1,7 @@
+# (c) Didier  LECLERC 2020 CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+# créé le 26 Mai 2020 - 12h01m41s
+
+paramSelect = ['https://api.camino.beta.gouv.fr/titres?format=geojson','Cadastre miniers api','ogr']
+paramSelect = ['https://flux.camino.beta.gouv.fr/titres','Cadastre miniers Flux','ogr']
+
+

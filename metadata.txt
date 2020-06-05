@@ -1,0 +1,48 @@
+[general]
+name = CAMINO Mining titles and authorizations 
+description=CAMINO Mining titles and authorizations
+category = Tools
+version=1.4
+qgisMinimumVersion=3.0
+# Optional items:
+changelog:
+    =======================================
+    ** 1.4.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Management of the logins entry : (Email / Login / Without) 
+    =======================================
+    =======================================
+    ** 1.3.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Management of the new API URL (Feeds vs API plus format) 
+    =======================================
+    =======================================
+    ** 1.2.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Display of an additional tab and GUI for filter management 
+    =======================================
+    =======================================
+    ** 1.1.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Tab display and filter management 
+       ** one line ==> Double click     
+       ** multi lines ==> Single click     
+    =======================================
+    =======================================
+    ** 1.0.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       CAMINO manages the valid mining titles and the initial or modifying applications related to them, both public and under investigation.        
+    =======================================
+ 
+tags= CAMINO, Mining Titles, Authorizations
+homepage=http://geo-info.metier.i2
+tracker=camino@beta.gouv.fr
+repository=http://geo-info.metier.i2 
+icon=icons/camino.png 
+experimental=False
+deprecated=False
+
+# Author contact information
+author=Didier LECLERC - MTES-MCTRCT SNUM / UNI / DRC Site de Rouen
+email=didier.leclerc@developpement-durable.gouv.fr
+class_name=CAMINO
