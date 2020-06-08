@@ -32,21 +32,21 @@ La documentation [est disponible ici](https://github.com/MTES-MCT/camino-flux-QG
 
 ### Flyers
 
-![Flyer](doc/flyer1.png)
+![Flyer](doc/flyer1.svg)
 ![Flyer](doc/flyer2.png)
-![Flyer](doc/flyer1.pn3)
+![Flyer](doc/flyer3.png)
 ---
 
 ## Structure des fichiers
- ```bash
+```bash
 .                        # `Racine où se trouve les sources .py`
 │
 ├── doc                  # `documentation et flyer`
 ├── i18n                 # `fichiers des langues
 └── icons                # `icones de l'application, menu, barre d'outils, IHM`
-    └── metier           # `icones de la boite de dialogue de filtre`
+    └── metier            # `icones de la boite de dialogue de filtre`
 └── requete              # `dossier par défaut de sauvegarde et de chargement des requetes (filtres)`
-
+```
 ---
 
 ## Crédits
@@ -58,7 +58,7 @@ La documentation [est disponible ici](https://github.com/MTES-MCT/camino-flux-QG
 ### Équipe
 
 - Didier LECLERC, CMSIG développeur MTES/MCTRCT SG/SNUM/UNI/DRC
-- Nicolas PETITOT, Appui métier
+- Nicolas PETITOT, Développeur Camino, Appui métier pour Qgis
 
 ---
 
