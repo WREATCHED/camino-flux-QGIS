@@ -25,7 +25,7 @@ class Ui_Dialog_Camino_onglet(object):
     
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        self.lScreenDialog, self.hScreenDialog = 810, 700
+        self.lScreenDialog, self.hScreenDialog = 810, 640
         Dialog.resize(QtCore.QSize(QtCore.QRect(0,0,self.lScreenDialog, self.hScreenDialog).size()).expandedTo(Dialog.minimumSizeHint()))
         Dialog.setWindowTitle("CAMINO (mining titles) International...")
         Dialog.setWindowModality(QtCore.Qt.WindowModal)
@@ -41,7 +41,7 @@ class Ui_Dialog_Camino_onglet(object):
         myDefPath = myPath.replace("\\","/");
         carIcon = QtGui.QImage(myDefPath)
         self.labelImage.setPixmap(QtGui.QPixmap.fromImage(carIcon))
-        self.labelImage.setGeometry(QtCore.QRect(630, 10, 160, 100))
+        self.labelImage.setGeometry(QtCore.QRect(660, 45, 130, 90))
         self.labelImage.setObjectName("labelImage")
         
         #=====================================================
@@ -52,176 +52,66 @@ class Ui_Dialog_Camino_onglet(object):
 
         #=====================================================
         #Param File LOGIN
-        monFichierPathLogin = os.path.join(os.path.dirname(__file__))
-        monFichierPathLogin = monFichierPathLogin.replace("\\","/") + "//logincamino.par"
-        self.monFichierPathLogin = monFichierPathLogin
-        #---------
         monFichierPathLoginCourriel = os.path.join(os.path.dirname(__file__))
         monFichierPathLoginCourriel = monFichierPathLoginCourriel.replace("\\","/") + "//logincaminocourriel.par"
         self.monFichierPathLoginCourriel = monFichierPathLoginCourriel
         #=====================================================
-        #Groupe liseré gauche
-        self.groupBoxLeft_1 = QtWidgets.QGroupBox(Dialog)
-        self.groupBoxLeft_1.setGeometry(QtCore.QRect(10,10,610,100))
-        self.groupBoxLeft_1.setObjectName("groupBoxLeft_1")
-
-        palette = QtGui.QPalette()
-
-        brush = QtGui.QBrush(QtGui.QColor(245,255,0,125))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active,QtGui.QPalette.Base,brush)
-        self.groupBoxLeft_1.setPalette(palette)
-        
-        #Radio Affichage Etiquettes 
-        self.groupBoxRadio = QtWidgets.QGroupBox(self.groupBoxLeft_1)
-        self.groupBoxRadio.setGeometry(QtCore.QRect(10,5,125,85))
-        self.groupBoxRadio.setObjectName("groupBoxRadio")
-        self.groupBoxRadio.setStyleSheet("QGroupBox { color: red; }")
-        self.radioOptionMdp3 = QtWidgets.QRadioButton(self.groupBoxRadio)
-        self.radioOptionMdp3.setGeometry(QtCore.QRect(10,15,150,23))
-        self.radioOptionMdp3.setObjectName("radioOptionMdp3")
-        self.radioOptionMdp1 = QtWidgets.QRadioButton(self.groupBoxRadio)
-        self.radioOptionMdp1.setGeometry(QtCore.QRect(10,37,150,23))
-        self.radioOptionMdp1.setObjectName("radioOptionMdp1")
-        self.radioOptionMdp2 = QtWidgets.QRadioButton(self.groupBoxRadio)
-        self.radioOptionMdp2.setGeometry(QtCore.QRect(10,59,150,23))
-        self.radioOptionMdp2.setObjectName("radioOptionMdp2")
-        self.radioOptionMdp2.setChecked(True)
-        
-        #Label et zone LOGIN   
-        self.labelLogin = QtWidgets.QLabel(self.groupBoxLeft_1)
-        self.labelLogin.setGeometry(QtCore.QRect(100,10,120,18))
-        self.labelLogin.setObjectName("labelLogin")
-        self.labelLogin.setAlignment(Qt.AlignRight)
-        #-----------
-        self.textEditLogin = QtWidgets.QTextEdit(self.groupBoxLeft_1)
-        self.textEditLogin.setGeometry(QtCore.QRect(220,10,270,23))
-        self.textEditLogin.setObjectName("textEditLogin")
-
-        #Label et zone ORGANISATION   
-        self.labelOrga = QtWidgets.QLabel(self.groupBoxLeft_1)
-        self.labelOrga.setGeometry(QtCore.QRect(140,38,80,18))
-        self.labelOrga.setObjectName("labelOrga")
-        self.labelOrga.setAlignment(Qt.AlignRight)
-        #-----------
-        self.textEditOrga = QtWidgets.QTextEdit(self.groupBoxLeft_1)
-        self.textEditOrga.setGeometry(QtCore.QRect(220,38,270,23))
-        self.textEditOrga.setObjectName("textEditOrga")
-
-        #Label et zone MDP  
-        self.labelMdp = QtWidgets.QLabel(self.groupBoxLeft_1)
-        self.labelMdp.setGeometry(QtCore.QRect(140,65,80,18))
-        self.labelMdp.setObjectName("labelMdp")
-        self.labelMdp.setAlignment(Qt.AlignRight)
-        #-----------
-        self.textEditMdp = QtWidgets.QTextEdit(self.groupBoxLeft_1)
-        self.textEditMdp.setGeometry(QtCore.QRect(220,65,270,23))
-        self.textEditMdp.setObjectName("textEditMdp")
-        #-----------
-        #-----------
-        #Label et zone COURRIEL   
-        self.labelCourriel = QtWidgets.QLabel(self.groupBoxLeft_1)
-        self.labelCourriel.setGeometry(QtCore.QRect(100,20,120,18))
-        self.labelCourriel.setObjectName("labelCourriel")
-        self.labelCourriel.setAlignment(Qt.AlignRight)
-        #-----------
-        self.textEditCourriel = QtWidgets.QTextEdit(self.groupBoxLeft_1)
-        self.textEditCourriel.setGeometry(QtCore.QRect(220,20,270,23))
-        self.textEditCourriel.setObjectName("textEditCourriel")
-
-        #Label et zone MDP COURRIEL  
-        self.labelMdpCourriel = QtWidgets.QLabel(self.groupBoxLeft_1)
-        self.labelMdpCourriel.setGeometry(QtCore.QRect(140,55,80,18))
-        self.labelMdpCourriel.setObjectName("labelMdpCourriel")
-        self.labelMdpCourriel.setAlignment(Qt.AlignRight)
-        #-----------
-        self.textEditMdpCourriel = QtWidgets.QTextEdit(self.groupBoxLeft_1)
-        self.textEditMdpCourriel.setGeometry(QtCore.QRect(220,55,270,23))
-        self.textEditMdpCourriel.setObjectName("textEditMdpCourriel")
-
         #ComboBox Adresse 
         self.labelAdresse = QtWidgets.QLabel(Dialog)
-        self.labelAdresse.setGeometry(QtCore.QRect(20,120,100,18))
+        self.labelAdresse.setGeometry(QtCore.QRect(20,14,100,18))
         self.labelAdresse.setObjectName("labelAdresse")
         self.labelAdresse.setAlignment(Qt.AlignRight)
 
         self.comboAdresse = QtWidgets.QComboBox(Dialog)
-        self.comboAdresse.setGeometry(QtCore.QRect(130,120,660,23))
+        self.comboAdresse.setGeometry(QtCore.QRect(130,10,660,23))
         self.comboAdresse.setObjectName("comboAdresse")
 
         #Zone affichage  
         self.resultTextEdit = QtWidgets.QTextEdit(Dialog)
-        self.resultTextEdit.setGeometry(QtCore.QRect(5, 150, 650,90))
+        self.resultTextEdit.setGeometry(QtCore.QRect(5, 45, 650,90))
         self.resultTextEdit.setObjectName("resultTextEdit") 
+        self.resultTextEdit.setStyleSheet("QTextEdit {   \
+                                background-color: white; \
+                                border-style: outset;    \
+                                border-width: 2px;       \
+                                border-radius: 10px;     \
+                                border-color: blue;      \
+                                font: bold 11px;         \
+                                padding: 6px;            \
+                                }")
         
-        #Zone Filtre Affichage  
-        #self.resultFilterCombo = QtWidgets.QComboBox(Dialog)
-        #self.resultFilterCombo.setGeometry(QtCore.QRect(800, 150, 295, 500))
-        #self.resultFilterCombo.setObjectName("resultFilterCombo") 
+        self.resultTextEdit.setEnabled(False)
         
         #==========================              
         #Zone Onglets
         self.tabWidget = QTabWidget(Dialog)
         self.tabWidget.setObjectName("tabWidget")
-        self.tabWidget.setGeometry(QtCore.QRect(5, 250, 800,440))
-        #--------------------------
-        self.tab_widget_map = QWidget()
-        self.tab_widget_map.setObjectName("tab_widget_map")
-        labelTab1 = QtWidgets.QApplication.translate("camino_onglet_ui", "   Map   ", None)
-        self.tabWidget.addTab(self.tab_widget_map,labelTab1)
-        #--------------------------
-        self.tab_widget_Provider = QWidget()
-        self.tab_widget_Provider.setObjectName("tab_widget_Provider")
-        labelTab2 = QtWidgets.QApplication.translate("camino_onglet_ui", "   Provider   ", None)
-        #self.tabWidget.addTab(self.tab_widget_Provider,labelTab2)
-        #--------------------------
-        self.tab_widget_Data = QWidget()
-        self.tab_widget_Data.setObjectName("tab_widget_Data")
-        labelTab3 = QtWidgets.QApplication.translate("camino_onglet_ui", "   Data   ", None)
-        self.tabWidget.addTab(self.tab_widget_Data,labelTab3)
-        #--------------------------
-        self.tab_widget_Filter = QWidget()
-        self.tab_widget_Filter.setObjectName("tab_widget_Filter")
-        labelTab4 = QtWidgets.QApplication.translate("camino_onglet_ui", "   Filter   ", None)
-        self.tabWidget.addTab(self.tab_widget_Filter,labelTab4)
+        self.tabWidget.setGeometry(QtCore.QRect(5, 145, 800,440))
         #--------------------------
         self.tab_widget_Critere = QWidget()
         self.tab_widget_Critere.setObjectName("tab_widget_Critere")
-        labelTab5 = QtWidgets.QApplication.translate("camino_onglet_ui", "  Filter with criteria  ", None)
+        labelTab5 = QtWidgets.QApplication.translate("camino_onglet_ui", "  Filter  ", None)
         self.tabWidget.addTab(self.tab_widget_Critere,labelTab5)
-        self.tabWidget.setCurrentIndex(3)
         #--------------------------
-        # premier Onglet
-        #====== Zone affichage Layer 
-        self.resultLayer = QtWidgets.QTextEdit(self.tab_widget_map)
-        self.resultLayer.setGeometry(QtCore.QRect(5, 250, 790,400))
-        self.resultLayer.setObjectName("resultLayer") 
-        self.resultLayer.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Map display", None))
-        #------       
-        self.resultLayerLayout = QVBoxLayout()
-        self.resultLayerLayout.addWidget(self.resultLayer)
-        self.tab_widget_map.setLayout(self.resultLayerLayout)
+        self.tab_widget_Filter = QWidget()
+        self.tab_widget_Filter.setObjectName("tab_widget_Filter")
+        labelTab4 = QtWidgets.QApplication.translate("camino_onglet_ui", "   Attributes   ", None)
+        self.tabWidget.addTab(self.tab_widget_Filter,labelTab4)
+        self.tabWidget.setCurrentIndex(0)
+        #--------------------------
+        self.tab_widget_Connexion = QWidget()
+        self.tab_widget_Connexion.setObjectName("tab_widget_Connexion")
+        labelTab6 = QtWidgets.QApplication.translate("camino_onglet_ui", "   connection   ", None)
+        self.tabWidget.addTab(self.tab_widget_Connexion,labelTab6)
+
+        #========================== 
+        # Premier Onglet
+        #====== Zone affichage données avec critères
+        self.resulCritere = QtWidgets.QTextEdit(self.tab_widget_Critere)
+        self.resulCritere.setGeometry(QtCore.QRect(10, 10, 775, 395))
+        self.resulCritere.setObjectName("resulCritere")
+        #========================== 
         # deuxième Onglet
-        #====== Zone affichage Web structure 
-        self.resultProvider = QtWidgets.QTextEdit(self.tab_widget_Provider)
-        self.resultProvider.setGeometry(QtCore.QRect(5, 230, 790,400))
-        self.resultProvider.setObjectName("resultProvider")
-        self.resultProvider.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Structure display", None))
-        #------       
-        self.resultProviderLayout = QVBoxLayout()
-        self.resultProviderLayout.addWidget(self.resultProvider)
-        self.tab_widget_Provider.setLayout(self.resultProviderLayout)
-        # troisième Onglet
-        #====== Zone affichage données 
-        self.resultData = QtWidgets.QTextEdit(self.tab_widget_Data)
-        self.resultData.setGeometry(QtCore.QRect(5, 230, 790,400))
-        self.resultData.setObjectName("resultData")
-        self.resultData.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Data display", None))
-        #------       
-        self.resultDataLayout = QVBoxLayout()
-        self.resultDataLayout.addWidget(self.resultData)
-        self.tab_widget_Data.setLayout(self.resultDataLayout)
-        # quatrième Onglet
         #====== Zone affichage données 
         self.resulFilter = QtWidgets.QTextEdit(self.tab_widget_Filter)
         self.resulFilter.setGeometry(QtCore.QRect(5, 230, 790,390))
@@ -231,49 +121,102 @@ class Ui_Dialog_Camino_onglet(object):
         self.resultFilterLayout = QVBoxLayout()
         self.resultFilterLayout.addWidget(self.resulFilter)
         self.tab_widget_Filter.setLayout(self.resultFilterLayout)        
-        # cinquième Onglet
-        #====== Zone affichage données avec critères
-        self.resulCritere = QtWidgets.QTextEdit(self.tab_widget_Critere)
-        self.resulCritere.setGeometry(QtCore.QRect(10, 10, 775, 395))
-        self.resulCritere.setObjectName("resulCritere")
-        #------ Création de l'IHM Critère
-        createIhmCritere(self)     
-        #==========================              
+        #========================== 
+        # troisième Onglet
+        #====== Zone affichage connexion 
+        self.resulConnexion = QtWidgets.QTextEdit(self.tab_widget_Connexion)
+        self.resulConnexion.setGeometry(QtCore.QRect(10, 10, 775, 395))
+        self.resulConnexion.setObjectName("resulFilter")
+        #Groupe liseré gauche
+        self.groupBoxLeft_1 = QtWidgets.QGroupBox(self.resulConnexion)
+        self.groupBoxLeft_1.setGeometry(QtCore.QRect(10,10,755,375))
+        self.groupBoxLeft_1.setObjectName("groupBoxLeft_1")
 
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(245,255,0,125))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active,QtGui.QPalette.Base,brush)
+        self.groupBoxLeft_1.setPalette(palette)
+        
+        #Radio Affichage Etiquettes 
+        self.groupBoxRadio = QtWidgets.QGroupBox(self.groupBoxLeft_1)
+        self.groupBoxRadio.setGeometry(QtCore.QRect(10,5,140,85))
+        self.groupBoxRadio.setObjectName("groupBoxRadio")
+        self.groupBoxRadio.setStyleSheet("QGroupBox { color: red; }")
+        self.radioOptionMdp3 = QtWidgets.QRadioButton(self.groupBoxRadio)
+        self.radioOptionMdp3.setGeometry(QtCore.QRect(10,20,150,23))
+        self.radioOptionMdp3.setObjectName("radioOptionMdp3")
+        self.radioOptionMdp2 = QtWidgets.QRadioButton(self.groupBoxRadio)
+        self.radioOptionMdp2.setGeometry(QtCore.QRect(10,54,150,23))
+        self.radioOptionMdp2.setObjectName("radioOptionMdp2")
+        self.radioOptionMdp2.setChecked(True)
+        #-----------
+        #Label et zone COURRIEL   
+        self.labelCourriel = QtWidgets.QLabel(self.groupBoxLeft_1)
+        self.labelCourriel.setGeometry(QtCore.QRect(120,30,120,18))
+        self.labelCourriel.setObjectName("labelCourriel")
+        self.labelCourriel.setAlignment(Qt.AlignRight)
+        #-----------
+        self.textEditCourriel = QtWidgets.QTextEdit(self.groupBoxLeft_1)
+        self.textEditCourriel.setGeometry(QtCore.QRect(240,26,505,23))
+        self.textEditCourriel.setObjectName("textEditCourriel")
+
+        #Label et zone MDP COURRIEL  
+        self.labelMdpCourriel = QtWidgets.QLabel(self.groupBoxLeft_1)
+        self.labelMdpCourriel.setGeometry(QtCore.QRect(120,65,120,18))
+        self.labelMdpCourriel.setObjectName("labelMdpCourriel")
+        self.labelMdpCourriel.setAlignment(Qt.AlignRight)
+        #-----------
+        self.textEditMdpCourriel = QtWidgets.QTextEdit(self.groupBoxLeft_1)
+        self.textEditMdpCourriel.setGeometry(QtCore.QRect(240,61,505,23))
+        self.textEditMdpCourriel.setObjectName("textEditMdpCourriel")
+        #==========================              
+        #Groupe liseré bas
+        self.groupBoxDown = QtWidgets.QGroupBox(Dialog)
+        self.groupBoxDown.setGeometry(QtCore.QRect(10,590,795,40))
+        self.groupBoxDown.setObjectName("groupBoxDown")
+        self.groupBoxDown.setStyleSheet("QGroupBox {   \
+                                background-color: white; \
+                                border-style: outset;    \
+                                border-width: 1px;       \
+                                border-radius: 10px;     \
+                                border-color: black;      \
+                                font: bold 12px;         \
+                                padding: 6px;            \
+                                }")
+        #=====================================================
         #Boutons  
-        self.valideLoginMdp = QtWidgets.QPushButton(self.groupBoxLeft_1)
-        self.valideLoginMdp.setGeometry(QtCore.QRect(500, 10, 100,23))
-        self.valideLoginMdp.setObjectName("valideLoginMdp")
         #------       
-        self.okhButton = QtWidgets.QPushButton(self.groupBoxLeft_1)
-        self.okhButton.setGeometry(QtCore.QRect(500, 38, 100,23))
+        self.okhButton = QtWidgets.QPushButton(self.groupBoxDown)
+        self.okhButton.setGeometry(QtCore.QRect(500, 10, 100,23))
         self.okhButton.setObjectName("okhButton")
         #------       
-        self.helpButton = QtWidgets.QPushButton(self.groupBoxLeft_1)
-        self.helpButton.setGeometry(QtCore.QRect(500, 65, 100,23))
+        self.helpButton = QtWidgets.QPushButton(self.groupBoxDown)
+        self.helpButton.setGeometry(QtCore.QRect(200, 10, 100,23))
         self.helpButton.setObjectName("helpButton")
         self.helpButton.setStyleSheet("QPushButton { color: green; }")
         #------       
         #Filtre bouton multi selection rows 
-        self.buttonFilter = QtWidgets.QPushButton(Dialog)
-        self.buttonFilter.setGeometry(QtCore.QRect(670, 180, 120, 23))
+        self.buttonFilter = QtWidgets.QPushButton(self.tab_widget_Filter)
+        self.buttonFilter.setGeometry(QtCore.QRect(200, 378, 100, 23))
         self.buttonFilter.setObjectName("buttonFilter")
         self.buttonFilter.setStyleSheet("QPushButton { color: red; }")
         self.buttonFilter.setVisible(False)
+        self.buttonFilter.setEnabled(False)
         #Label nb occurrences
-        self.labelOccurrence = QtWidgets.QLabel(Dialog)
-        self.labelOccurrence.setGeometry(QtCore.QRect(670,215,120,18))
+        self.labelOccurrence = QtWidgets.QLabel(self.tab_widget_Filter)
+        self.labelOccurrence.setGeometry(QtCore.QRect(450,378,200,18))
         self.labelOccurrence.setObjectName("labelOccurrence")
         self.labelOccurrence.setAlignment(Qt.AlignCenter)    
         self.labelOccurrence.setStyleSheet("QLabel { color: red; }")
         self.labelOccurrence.setVisible(False)
         #------       
+        #------ Création de l'IHM Critère
+        createIhmCritere(self)   
         #------  
         #Connections  
         self.helpButton.clicked.connect(Dialog.myHelpCamino)
         self.okhButton.clicked.connect(Dialog.reject)
-        self.valideLoginMdp.clicked.connect(Dialog.findTokenApiCamino)
-        self.radioOptionMdp1.toggled.connect(Dialog.showHideLogin)
         self.radioOptionMdp2.toggled.connect(Dialog.showHideLogin)
         self.radioOptionMdp3.toggled.connect(Dialog.showHideLogin)
         self.showHideLogin()                                     
@@ -292,106 +235,17 @@ class Ui_Dialog_Camino_onglet(object):
         #========================== 
         self.retranslateUi(Dialog)
         returnToken = ""
-                                       
-    def findTokenApiCamino(self):
-        iden = self.textEditLogin.toPlainText()
-        orga = self.textEditOrga.toPlainText()        
-        mdp  = self.textEditMdp.toPlainText() 
-        idenCourriel = self.textEditCourriel.toPlainText()
-        mdpCourriel  = self.textEditMdpCourriel.toPlainText()                 
-        if self.radioOptionMdp2.isChecked() :
-           fluxAdresse  = self.returnAdresse[self.comboAdresse.currentIndex()][0]
-           fluxTitre    = self.returnAdresse[self.comboAdresse.currentIndex()][1]
-           fluxProvider = self.returnAdresse[self.comboAdresse.currentIndex()][2]
-           #------       
-           self.resultTextEdit.clear()
-           zMess = self.zMess
-           zMess += self.zMess3 + " : \t" + str(fluxAdresse) + "\n"
-           zMess += self.zMess4 + " : \t" + str(fluxTitre) + "\n"
-           zMess += self.zMess5 + " : \t" + str(fluxProvider)
-           self.resultTextEdit.setText(zMess)
-           #------       
-           openLayer(self, fluxAdresse,fluxTitre,fluxProvider)
-        elif self.radioOptionMdp1.isChecked() :
-           #affiche dans la zone
-           if (iden == "" or mdp == "" or orga == "") :
-               myTokenTitre = QtWidgets.QApplication.translate("camino_onglet_ui", "Warning !!", None)
-               myToken = QtWidgets.QApplication.translate("camino_onglet_ui", "Please enter your username, organization and password please.", None)
-               QMessageBox.warning(None, myTokenTitre,myToken)
-           else :
-               mGestionLogin("SAVE", self.monFichierPathLogin, iden, orga) 
-               fluxAdresse  = self.returnAdresse[self.comboAdresse.currentIndex()][0]
-               fluxTitre    = self.returnAdresse[self.comboAdresse.currentIndex()][1]
-               fluxProvider = self.returnAdresse[self.comboAdresse.currentIndex()][2]
-               #------       
-               self.resultTextEdit.clear()
-               zMess = self.zMess
-               zMess += self.zMess1 + " : " + str(iden) + " " + self.zMessOrga + " : " + str(orga) + " " + self.zMess2 + " : " + str(mdp) +"\n"
-               zMess += self.zMess3 + " : \t" + str(fluxAdresse) + "\n"
-               zMess += self.zMess4 + " : \t" + str(fluxTitre) + "\n"
-               zMess += self.zMess5 + " : \t" + str(fluxProvider)
-               self.resultTextEdit.setText(zMess)
-               #------       
-               #============
-               #Gestion de l'adresse et du login
-               mFindCaminoAdresse, mCodeUrl, mSepMdp, mSepAdresse = "https://", "%40", ":", "@"  
-               mPos = fluxAdresse.find(mFindCaminoAdresse)
-               if mPos == -1 :
-                  urlMySourceLogin = fluxAdresse
-               else :
-                  urlMySourceLogin = fluxAdresse[0:len(mFindCaminoAdresse)] + iden + mCodeUrl + orga + mSepMdp + mdp + mSepAdresse + fluxAdresse[len(mFindCaminoAdresse):]
-               if self.radioOptionMdp1.isChecked() : fluxAdresse = urlMySourceLogin
-               #============
-               openLayer(self, fluxAdresse,fluxTitre,fluxProvider)
-        elif self.radioOptionMdp3.isChecked() :
-           #affiche dans la zone
-           if (idenCourriel == "" or mdpCourriel == "") :
-               myTokenTitre = QtWidgets.QApplication.translate("camino_onglet_ui", "Warning !!", None)
-               myToken = QtWidgets.QApplication.translate("camino_onglet_ui", "Please enter your mail address and password please.", None)
-               QMessageBox.warning(None, myTokenTitre,myToken)
-           else :
-               mGestionLoginCourriel("SAVE", self.monFichierPathLoginCourriel, idenCourriel) 
-               fluxAdresse  = self.returnAdresse[self.comboAdresse.currentIndex()][0]
-               fluxTitre    = self.returnAdresse[self.comboAdresse.currentIndex()][1]
-               fluxProvider = self.returnAdresse[self.comboAdresse.currentIndex()][2]
-               #------       
-               self.resultTextEdit.clear()
-               #Gestion de l'adresse et du login
-               mFindCaminoAdresse, mCodeUrl, mSepMdp, mSepAdresse = "https://", "%40", ":", "@"  
-               idenCourriel = idenCourriel.replace(mSepAdresse, mCodeUrl)
-               zMess = self.zMess
-               zMess += self.zMess1 + " : " + str(idenCourriel) + " " + self.zMess2 + " : " + str(mdpCourriel) +"\n"
-               zMess += self.zMess3 + " : \t" + str(fluxAdresse) + "\n"
-               zMess += self.zMess4 + " : \t" + str(fluxTitre) + "\n"
-               zMess += self.zMess5 + " : \t" + str(fluxProvider)
-               self.resultTextEdit.setText(zMess)
-               #------       
-               #============
-               #Gestion de l'adresse et du login
-               mPos = fluxAdresse.find(mFindCaminoAdresse)
-               if mPos == -1 :
-                  urlMySourceLogin = fluxAdresse
-               else :
-                  urlMySourceLogin = fluxAdresse[0:len(mFindCaminoAdresse)] + idenCourriel + mSepMdp + mdpCourriel + mSepAdresse + fluxAdresse[len(mFindCaminoAdresse):]
-               if self.radioOptionMdp3.isChecked() : fluxAdresse = urlMySourceLogin
-               #============
-               openLayer(self, fluxAdresse,fluxTitre,fluxProvider)               
     #------       
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QtWidgets.QApplication.translate("camino_onglet_ui", "CAMINO (mining titles) International...", None))
         self.labelCourriel.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "mail address : ", None))
         self.labelMdpCourriel.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Password : ", None))
-        self.labelLogin.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "First/Last name : ", None))
-        self.labelOrga.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Organization : ", None))
-        self.labelMdp.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Password : ", None))
         self.helpButton.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Help", None))
         self.okhButton.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Close", None))
         self.buttonFilter.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "multi-line filter", None))
-        self.valideLoginMdp.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "layer loading", None))
         self.labelAdresse.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "layer address : ", None))
-        self.radioOptionMdp1.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "with identifier", None))
         self.radioOptionMdp2.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "without identifier", None))
-        self.radioOptionMdp3.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "with email address", None))
+        self.radioOptionMdp3.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "With Camino account", None))
         self.groupBoxRadio.setTitle(QtWidgets.QApplication.translate("camino_onglet_ui", " Login ", None))
         self.zMess = QtWidgets.QApplication.translate("camino_onglet_ui", "Here is the return of the Camino API : ", None) +"\n"
         self.zMess1 = QtWidgets.QApplication.translate("camino_onglet_ui", "Username", None)
@@ -423,32 +277,10 @@ class Ui_Dialog_Camino_onglet(object):
     #-----------------------------------
     def showHideLogin(self):
         if self.radioOptionMdp2.isChecked() :
-           self.labelLogin.hide()
-           self.textEditLogin.hide()
-           self.labelOrga.hide()
-           self.textEditOrga.hide()
-           self.labelMdp.hide()
-           self.textEditMdp.hide()
-           #-------
            self.labelCourriel.hide()
            self.textEditCourriel.hide()
            self.labelMdpCourriel.hide()
            self.textEditMdpCourriel.hide()           
-        elif self.radioOptionMdp1.isChecked() :
-           mIden, mOrga = mGestionLogin("RESTORE", self.monFichierPathLogin, '', '') 
-           if self.textEditLogin.toPlainText() == '' : self.textEditLogin.setPlainText(mIden) 
-           if self.textEditOrga.toPlainText() == '' : self.textEditOrga.setPlainText(mOrga)
-           self.labelLogin.show()
-           self.textEditLogin.show()
-           self.labelOrga.show()
-           self.textEditOrga.show()
-           self.labelMdp.show()
-           self.textEditMdp.show()
-           #-------
-           self.labelCourriel.hide()
-           self.textEditCourriel.hide()
-           self.labelMdpCourriel.hide()
-           self.textEditMdpCourriel.hide()  
         elif self.radioOptionMdp3.isChecked() :
            mIdenCourriel = mGestionLoginCourriel("RESTORE", self.monFichierPathLoginCourriel, '') 
            if self.textEditCourriel.toPlainText() == '' : self.textEditCourriel.setPlainText(mIdenCourriel) 
@@ -456,13 +288,6 @@ class Ui_Dialog_Camino_onglet(object):
            self.textEditCourriel.show()
            self.labelMdpCourriel.show()
            self.textEditMdpCourriel.show()
-           #-------
-           self.labelLogin.hide()
-           self.textEditLogin.hide()
-           self.labelOrga.hide()
-           self.textEditOrga.hide()
-           self.labelMdp.hide()
-           self.textEditMdp.hide()
         return 
         
     #-----------------------------------

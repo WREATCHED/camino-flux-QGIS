@@ -169,7 +169,7 @@ def createIhmCritere(self) :
     self.groupBoxZonelibre = QtWidgets.QGroupBox(self.tab_widget_Critere)
     self.groupBoxZonelibre.setGeometry(QtCore.QRect(500,225,280,175))
     self.groupBoxZonelibre.setObjectName("groupBoxZonelibre") 
-    mMess = QtWidgets.QApplication.translate("bibli_ihm_camino", "  Free zones  ", None)
+    mMess = QtWidgets.QApplication.translate("bibli_ihm_camino", "  Titles and permissions  ", None)
     self.groupBoxZonelibre.setTitle(mMess)
     self.groupBoxZonelibre.setStyleSheet("QGroupBox { color: red; }")
     #------           
@@ -231,11 +231,20 @@ def createIhmCritere(self) :
     self.groupBoxFiltre.setObjectName("groupBoxFiltre")                                       
     #Filtre bouton filtre criteres 
     self.buttonFilterCritere = QtWidgets.QPushButton(self.groupBoxFiltre)
-    self.buttonFilterCritere.setGeometry(QtCore.QRect(330, 30, 120, 23))
+    self.buttonFilterCritere.setGeometry(QtCore.QRect(330, 26, 120, 30))
     self.buttonFilterCritere.setObjectName("buttonFilterCritere")
     self.buttonFilterCritere.setStyleSheet("QPushButton { color: red; }")
-    self.buttonFilterCritere.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", "Filter", None))
+    self.buttonFilterCritere.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", "layer loading", None))
     self.buttonFilterCritere.setVisible(True)
+    self.buttonFilterCritere.setStyleSheet("QPushButton {\
+                                color: red;              \
+                                border-style: outset;    \
+                                border-width: 2px;       \
+                                border-radius: 10px;     \
+                                border-color: blue;      \
+                                font: bold 11px;         \
+                                padding: 6px;            \
+                                }")    
     #------   
     #Filtre bouton Sauvegarde filtre
     self.buttonFilterSave = QtWidgets.QPushButton(self.groupBoxFiltre)
@@ -256,6 +265,9 @@ def createIhmCritere(self) :
     self.buttonFilterSave.clicked.connect(lambda : saveRequestCritere([mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
     self.buttonFilterLoad.clicked.connect(lambda : restoreRequestCritere(self, [mDicCaseDom, mDicCaseType, mDicCaseStatus,mDicCaseZoneLibre], 
                                                                                 mListCaseDom, mListCaseType, mListCaseStatus, mListZoneLibre))
+    #------ Bouton multi filtre  
+    self.buttonFilter.clicked.connect(lambda : loadOpenResultFilterMulti(self, self.vlayer,
+                                                                                    self.mySource, self.fluxTitre, self.fluxProvider))
            
     return
 
@@ -445,22 +457,11 @@ def genereFiltreUrl(self, mListDico) :
               urlCaseOk =  urlCaseOk + mOpe + urlZoneLibreDico[iZoneLibreDico]
               if mFirst : mFirst, mOpe = False, "&"
     #=============
-    iden = self.textEditLogin.toPlainText()
-    orga = self.textEditOrga.toPlainText()        
-    mdp  = self.textEditMdp.toPlainText()
     idenCourriel = self.textEditCourriel.toPlainText()
     mdpCourriel  = self.textEditMdpCourriel.toPlainText()     
     mContinue = False
     
-    if self.radioOptionMdp1.isChecked() :
-       if (iden == "" or mdp == "" or orga == "") :
-          myTokenTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning !!", None)
-          myToken = QtWidgets.QApplication.translate("bibli_ihm_camino", "Please enter your username, organization and password please.", None)
-          QMessageBox.warning(None, myTokenTitre,myToken)
-       else :
-          mGestionLogin("SAVE", self.monFichierPathLogin, iden, orga) 
-          mContinue = True
-    elif self.radioOptionMdp3.isChecked() :
+    if self.radioOptionMdp3.isChecked() :
        if (idenCourriel == "" or mdpCourriel == "") :
           myTokenTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning !!", None)
           myToken = QtWidgets.QApplication.translate("bibli_ihm_camino", "Please enter your mail address and password please.", None)
@@ -474,7 +475,8 @@ def genereFiltreUrl(self, mListDico) :
     if mContinue :
        #Charge le flux camino teste si la couche t valide et après le résultat
        mySource = self.returnAdresse[self.comboAdresse.currentIndex()][0]
-       fluxTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Camino => Filter with criteria", None)
+       fluxTitre    = self.returnAdresse[self.comboAdresse.currentIndex()][1]
+       fluxProvider = self.returnAdresse[self.comboAdresse.currentIndex()][2]
        fluxProvider = 'ogr' 
        #============
        #Gestion de l'adresse et du login
@@ -483,10 +485,7 @@ def genereFiltreUrl(self, mListDico) :
        if mPos == -1 :
           urlMySourceLogin = mySource
        else :
-          if self.radioOptionMdp1.isChecked() :
-             urlMySourceLogin = mySource[0:len(mFindCaminoAdresse)] + iden + mCodeUrl + orga + mSepMdp + mdp + mSepAdresse + mySource[len(mFindCaminoAdresse):]
-             mySource = urlMySourceLogin
-          elif self.radioOptionMdp3.isChecked() :
+          if self.radioOptionMdp3.isChecked() :
              idenCourriel = idenCourriel.replace(mSepAdresse, mCodeUrl)
              urlMySourceLogin = mySource[0:len(mFindCaminoAdresse)] + idenCourriel + mSepMdp + mdpCourriel + mSepAdresse + mySource[len(mFindCaminoAdresse):]
              mySource = urlMySourceLogin
@@ -506,6 +505,8 @@ def genereFiltreUrl(self, mListDico) :
                 mySource += "?" + urlCaseOk
              else :
                 mySource += "&" + urlCaseOk
+             #Gestion du nom de la couche si mdp ou pas
+             fluxTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Camino => Filter with criteria", None)
            
           vlayer = QgsVectorLayer(mySource, fluxTitre, fluxProvider)
           if not vlayer.isValid():
@@ -517,30 +518,19 @@ def genereFiltreUrl(self, mListDico) :
           else :
              #------     
              fluxAdresse = mySource
+             print(fluxTitre)
              #------     
              self.resultTextEdit.clear()
              zMess = self.zMess
-             if self.radioOptionMdp1.isChecked() :
-                zMess += self.zMess1 + " : " + str(iden) + " " + self.zMessOrga + " : " + str(orga) + " " + self.zMess2 + " : " + str(mdp) +"\n"
              zMess += self.zMess3 + " : \t" + str(fluxAdresse) + "\n"
              zMess += self.zMess4 + " : \t" + str(fluxTitre) + "\n"
              zMess += self.zMess5 + " : \t" + str(fluxProvider)
+             print(zMess)
              self.resultTextEdit.setText(zMess)       
              #------  
-             self.resultLayer.setText(QtWidgets.QApplication.translate("bibli_camino", "", None))
-             QgsProject.instance().addMapLayer(vlayer)
-             mCanvas = iface.mapCanvas()
-             mCanvas.setExtent(vlayer.extent())
-             #------  
-             layerset = [vlayer]             
-             resultLayerCanvas= QgsMapCanvas(self.resultLayer)
-             resultLayerCanvas.setLayers(layerset)
-             resultLayerCanvas.setExtent(vlayer.extent())
-             resultLayerCanvas.resize(776, 396)
-             resultLayerCanvas.show() 
-             #------  
-             openResultData(self, mySource)                              # Onglet 3
-             openResultFilter(self, mySource, fluxTitre, fluxProvider)   # Onglet 4          
+             self.mySource,self.fluxTitre,self.fluxProvider = mySource,fluxTitre,fluxProvider
+             openLayer(self, self.mySource,self.fluxTitre,self.fluxProvider)               
+             
     #=============
     return
 
@@ -610,50 +600,7 @@ def execPdf(nameciblePdf):
 
     return       
 #============================================  
-
-def mGestionLogin(mType, mFile, mIden, mOrga) :
-
-    if mType == "SAVE" :
-       carDebut, carFin = '[', ']'
-       zFileParam = open(mFile, "w",encoding="utf-8")
-       zContenu = u"# (c) Didier  LECLERC 2020 CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen\n"
-       zContenu += u"# créé le " + time.strftime("%d ") + zMyFrenchMonth(float(time.strftime("%m"))) + time.strftime(" %Y - %Hh%Mm%Ss") + "\n"
-       zContenu += "\n"
-       zContenu += "IDEN = " + carDebut + mIden + carFin + "\n"
-       zContenu += "ORGA = " + carDebut + mOrga + carFin + "\n"
-       zFileParam.write(zContenu)
-       zFileParam.close()
-       return
-    elif mType == "RESTORE" :
-       if FileExiste(mFile) :
-          carDebut, carFin, mIden, mOrga, mListeLogin = '[', ']', '', '', ["IDEN","ORGA"]
-          with open(mFile, "r",encoding="utf-8") as mFileParam :
-               for zFileParamLigne in mFileParam :
-                   for i in range(len(mListeLogin)) :
-                       sVar_bonne_ligne = mListeLogin[i]
-
-                       if sVar_bonne_ligne in zFileParamLigne :
-                          slistWithValue = ""
-                          #---------------
-                          posInf = 0
-                          while posInf < len(zFileParamLigne) :
-                                if zFileParamLigne[posInf:posInf + 1] == carDebut :
-                                   break
-                                posInf += 1
-                          #---------------
-                          posSup = posInf + 1
-                          while posSup < len(zFileParamLigne) :
-                                if zFileParamLigne[posSup:posSup + 1] == carFin : 
-                                   break
-                                posSup += 1
-                          slistWithValue = zFileParamLigne[posInf + 1:posSup]
-                          #---------------
-                          if sVar_bonne_ligne == "IDEN" :
-                             mIden = slistWithValue
-                          elif sVar_bonne_ligne == "ORGA" :
-                             mOrga = slistWithValue
-       return mIden, mOrga
-       
+      
 #============================================ 
 def mGestionLoginCourriel(mType, mFile, mIden) :
 

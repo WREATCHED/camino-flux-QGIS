@@ -79,28 +79,11 @@ def openLayer(self, mySource,fluxTitre,fluxProvider):
        zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n" + str(mySource) + "\n\n" + zMessErrorLoadLayerTraduction2
        QMessageBox.warning(None, zMessErrorLoadLayerTitre, zMessErrorLoadLayer)
     else :   
-       self.resultLayer.setText(QtWidgets.QApplication.translate("bibli_camino", "", None))
        QgsProject.instance().addMapLayer(vlayer)
-       layerset = [vlayer]             
-       resultLayerCanvas= QgsMapCanvas(self.resultLayer)
-       resultLayerCanvas.setLayers(layerset)
-       resultLayerCanvas.setExtent(vlayer.extent())
-       resultLayerCanvas.resize(776, 396)
-       resultLayerCanvas.show() 
-       #===========================                             
-       #vu Ok, Start Provider et Data
-       #===========================
-       #Alimentation des filtres
-       dicListId     = ['id', 'url']
-       dicListAttrib = ['nom', 'type', 'statut', 'substances', 'titulaires']
-       #------------
-       dicResultId, dicResultAttrib = alimDicSelect(self, vlayer, dicListId, dicListAttrib) 
-       #alimDicComboFilter(self, dicResultId, dicResultAttrib)  
-       #------------
-       #openResultProvider(self.resultProvider, mySource)    # Onglet 2
-       openResultData(self, mySource)      # Onglet 3
-       openResultFilter(self, mySource, fluxTitre, fluxProvider)   # Onglet 4
-       self.tabWidget.setCurrentIndex(3)
+       mCanvas = iface.mapCanvas()
+       mCanvas.setExtent(vlayer.extent())
+       openResultFilter(self, mySource, fluxTitre, fluxProvider)   # Onglet 1
+       self.tabWidget.setCurrentIndex(0)
     return
 
 #==================================================                                                          
@@ -111,36 +94,6 @@ def returnIndexRow():
     mIndex = mIndexesTable_view.row()
     return mReturnIndexRow
     
-#==================================================
-#Fonction Open Struture Provider
-#==================================================
-def openResultProvider(self, mySource): 
-    self.resultProvider.setText(QtWidgets.QApplication.translate("bibli_camino", "", None))
-    afficheWeb= QWebView(self.resultProvider)
-    afficheWeb.load(QUrl(mySource))
-    afficheWeb.setZoomFactor(0.50) 
-    afficheWeb.show()
-    return
-    
-#==================================================
-#Fonction Open Data
-#==================================================
-def openResultData(self, mySource) :
-    self.resultData.setText(QtWidgets.QApplication.translate("bibli_camino", "", None))
-    self.vlayer = iface.activeLayer()
-    self.resultDataCanvas = QgsMapCanvas()
-    self.vector_layer_cache_data = QgsVectorLayerCache(self.vlayer, 10000)
-    self.attribute_table_model = QgsAttributeTableModel(self.vector_layer_cache_data)
-    self.attribute_table_model.loadLayer()
-    #--------------
-    self.attribute_table_filter_model = QgsAttributeTableFilterModel(self.resultDataCanvas, self.attribute_table_model)
-    #--------------
-    self.table_view = QTableView(self.resultData)
-    self.table_view.setModel(self.attribute_table_filter_model)
-    self.table_view.resize(776, 396)
-    self.table_view.show()
-    return
-
 #==================================================
 #Fonction Open Filter
 #==================================================
@@ -157,15 +110,14 @@ def openResultFilter(self, mySource, fluxTitre,fluxProvider) :
     self.filter_table_view = QTableView(self.resulFilter)
     self.filter_table_view.setSelectionBehavior(QAbstractItemView.SelectRows) # Mode de selection
     self.filter_table_view.setModel(self.filter_attribute_table_filter_model)
-    self.filter_table_view.resize(776, 396)
+    self.filter_table_view.resize(776, 365)
     #--------------
     self.filter_table_view.show()
     #--------------
     self.filter_table_view.clicked.connect(lambda : displayButtonFilterMulti(self))
     self.filter_table_view.doubleClicked.connect(lambda : loadOpenResultFilter(self, self.filter_table_view, self.filter_attribute_table_model, 
                                                                                     mySource, fluxTitre,fluxProvider))
-    self.buttonFilter.clicked.connect(lambda : loadOpenResultFilterMulti(self, self.vlayer,
-                                                                                    mySource, fluxTitre, fluxProvider))
+    self.buttonFilter.setVisible(True)
     return
 
 #==================================================
@@ -173,7 +125,7 @@ def openResultFilter(self, mySource, fluxTitre,fluxProvider) :
 #==================================================
 def displayButtonFilterMulti(self) :
     mListRowsSelected = self.filter_table_view.selectionModel().selectedRows()    
-    self.buttonFilter.show() if len(mListRowsSelected) > 1 else self.buttonFilter.hide()
+    self.buttonFilter.setEnabled(True) if len(mListRowsSelected) > 1 else self.buttonFilter.setEnabled(False)
     self.labelOccurrence.setText(str(len(mListRowsSelected)) + QtWidgets.QApplication.translate("bibli_camino", " selected objects", None))
     self.labelOccurrence.show() if len(mListRowsSelected) > 1 else self.labelOccurrence.hide()
     return  
@@ -277,6 +229,7 @@ def openLayerFilterSimpleClick(self, mySource,fluxTitre,fluxProvider, mRequest):
     else :   
        self.resulFilter.setText(QtWidgets.QApplication.translate("bibli_camino", "", None))
        QgsProject.instance().addMapLayer(vlayer)
+       print("je passe")
        vlayer.setSubsetString(mRequest)
        mCanvas = iface.mapCanvas()
        mCanvas.setExtent(vlayer.extent())
@@ -406,81 +359,6 @@ def debugMess(type,zTitre,zMess, level=Qgis.Critical):
        QMessageBox.information(None,zTitre,zMess)
     return  
 
-#==================================================
-# Pour Tests
-#==================================================
-#View Window with map
-#==================================================
-class MyWnd(QMainWindow):
-    def __init__(self, layer, myWidget):
-        QMainWindow.__init__(self)
-        
-        self.resultLayer = myWidget
-        self.resultLayer = QgsMapCanvas()
-        self.resultLayer.setCanvasColor(Qt.yellow)
-
-        self.resultLayer.setExtent(layer.extent())
-        print(str(layer) + " == " + str([layer]))
-        self.resultLayer.setLayers([layer])
-
-        self.setCentralWidget(self.resultLayer)
-
-        self.actionZoomIn = QAction("Zoom in", self)
-        self.actionZoomOut = QAction("Zoom out", self)
-        self.actionPan = QAction("Pan", self)
-
-        self.actionZoomIn.setCheckable(True)
-        self.actionZoomOut.setCheckable(True)
-        self.actionPan.setCheckable(True)
-
-        self.actionZoomIn.triggered.connect(self.zoomIn)
-        self.actionZoomOut.triggered.connect(self.zoomOut)
-        self.actionPan.triggered.connect(self.pan)
-
-        self.toolbar = self.addToolBar("Canvas actions")
-        self.toolbar.addAction(self.actionZoomIn)
-        self.toolbar.addAction(self.actionZoomOut)
-        self.toolbar.addAction(self.actionPan)
-
-        # create the map tools
-        self.toolPan = QgsMapToolPan(self.resultLayer)
-        self.toolPan.setAction(self.actionPan)
-        self.toolZoomIn = QgsMapToolZoom(self.resultLayer, False) # false = in
-        self.toolZoomIn.setAction(self.actionZoomIn)
-        self.toolZoomOut = QgsMapToolZoom(self.resultLayer, True) # true = out
-        self.toolZoomOut.setAction(self.actionZoomOut)
-
-        self.pan()
-        print("OK class MyWnd(QMainWindow)")
-
-    def zoomIn(self):
-        self.resultLayer.setMapTool(self.toolZoomIn)
-
-    def zoomOut(self):
-        self.resultLayer.setMapTool(self.toolZoomOut)
-
-    def pan(self):
-        self.resultLayer.setMapTool(self.toolPan)
-"""        
-FileName = "D:\\Divers_test\\camino\\camino_did.shp"
-vlayer = QgsVectorLayer(FileName, "fluxTitre", 'ogr')
-print("OK 1")
-w = MyWnd(vlayer)
-print("OK 2")
-w.show()        
-"""
-#==================================================
-"""
-# Transform eoJson en SHP
-urlgeojson = "D:\\Divers_test\\camino\\titres-m-ar-dmc.geojson"
-sep = '"'
-FileName = "D:\\Divers_test\\camino\\camino_did.shp"
-FileName  = "https://flux.camino.beta.gouv.fr/geojson/titres-m-ar-dmc.geojson"
-paramGlob = 'ogr2ogr -f "ESRI Shapefile" ' + sep + FileName + sep + " " + sep + urlgeojson + sep
-print(paramGlob)
-subprocess.call(paramGlob, shell=False)
- Transform eoJson en SHP
-"""
 #==================================================
 # FIN
 #==================================================

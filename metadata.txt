@@ -2,10 +2,15 @@
 name = CAMINO Mining titles and authorizations 
 description=CAMINO Mining titles and authorizations
 category = Tools
-version=1.4
+version=1.5
 qgisMinimumVersion=3.0
 # Optional items:
 changelog:
+    =======================================
+    ** 1.5.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Changing the ihm (tabs) 
+    =======================================
     =======================================
     ** 1.4.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
                Version under Qgis 3.12
@@ -35,14 +40,14 @@ changelog:
     =======================================
  
 tags= CAMINO, Mining Titles, Authorizations
-homepage=http://geo-info.metier.i2
+homepage=https://camino.beta.gouv.fr
 tracker=camino@beta.gouv.fr
-repository=http://geo-info.metier.i2 
+repository=https://github.com/MTES-MCT/camino-flux-QGIS
 icon=icons/camino.png 
 experimental=False
 deprecated=False
 
 # Author contact information
-author=Didier LECLERC - MTES-MCTRCT SNUM / UNI / DRC Site de Rouen
-email=didier.leclerc@developpement-durable.gouv.fr
+author=Camino Digital Factory - MTES-MCTRCT
+email=camino@beta.gouv.fr
 class_name=CAMINO
