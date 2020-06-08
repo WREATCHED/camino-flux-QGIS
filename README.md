@@ -1,5 +1,7 @@
 # PLUGIN QGIS Camino
 
+> Plugin pour QGIS d'import des flux Geojson de [Camino](https://camino.beta.gouv.fr), le cadastre minier numérique ouvert
+
 ---           
 
 ## Technologies
