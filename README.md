@@ -44,7 +44,7 @@ La documentation [est disponible ici](https://github.com/MTES-MCT/camino-flux-QG
 ├── doc                  # `documentation et flyer`
 ├── i18n                 # `fichiers des langues
 └── icons                # `icones de l'application, menu, barre d'outils, IHM`
-    └── metier            # `icones de la boite de dialogue de filtre`
+    └── metier           # `icones de la boite de dialogue de filtre`
 └── requete              # `dossier par défaut de sauvegarde et de chargement des requetes (filtres)`
 ```
 ---
