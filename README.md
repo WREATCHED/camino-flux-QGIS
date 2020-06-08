@@ -30,10 +30,15 @@ Soit décompresser le fichier zippé (camino3.zip – mdp « qgis_dl ») qui c
 ## Documentation
 La documentation [est disponible ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf).
 
+### Flyers
+
+![Flyer](doc/flyer1.png)
+![Flyer](doc/flyer2.png)
+![Flyer](doc/flyer1.pn3)
 ---
 
 ## Structure des fichiers
-
+ ```bash
 .                        # `Racine où se trouve les sources .py`
 │
 ├── doc                  # `documentation et flyer`
