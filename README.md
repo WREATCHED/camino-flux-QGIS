@@ -18,8 +18,7 @@
 
 ## Installation
 ### Via le dépôt MTES
-Configurer les dépôts d'extension (menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Paramètres') avec l'url suivante :
-http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml
+Configurer les dépôts d'extension (menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Paramètres') avec l'url suivante [http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml](http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml)
 
 Le plugin est accessible via le menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Tout' >> 'Rechercher' camino
 Les mise à jour sont réalisées également dans ce menu.
@@ -75,7 +74,7 @@ Le plugin permet :
 ---
 
 ## Documentation
-La documentation compplète au format pdf est disponible dans le plugin et également [ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf)
+La documentation complète au format pdf est disponible dans le plugin et également [ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf)
 
 ---
 
