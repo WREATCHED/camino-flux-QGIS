@@ -28,13 +28,6 @@ Décompresser le zip et installer le répertoire sous :
  - "C:\ProgramFiles\QGIS\profil\python\camino3" pour la version QGIS packagée MTES
  - "MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3" pour la version communautaire
 
----
-
-### Flyers
-
-![Flyer](doc/flyer1.svg)
-![Flyer](doc/flyer2.png)
-![Flyer](doc/flyer3.png)
 
 ---
 
@@ -64,7 +57,8 @@ ou via la barre d'outils
 ### Utilisation
 
 Le plugin reprend le concept des filtres sur les titres de Camino et permet l'import et le chargement sous forme de couche dans QGIS des flux geojson.
-img
+![camino plugin screenshot](doc/camino-plugin-screenshot.png)
+
 
 Cliquer sur __Charger la couche__ pour importer les flux geojson et les charger dans une couche Vecteur QGIS.
 Le plugin permet :
@@ -76,6 +70,13 @@ Le plugin permet :
 ## Documentation
 La documentation complète au format pdf est disponible dans le plugin et également [ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf)
 
+---
+
+### Flyers
+
+![Flyer](doc/flyer1.svg)
+![Flyer](doc/flyer2.png)
+![Flyer](doc/flyer3.png)
 ---
 
 ## Crédits
