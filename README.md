@@ -1,4 +1,4 @@
-# PLUGIN QGIS Camino
+# PLUGIN Camino-flux-QGIS
 
 > Plugin pour QGIS d'import des flux Geojson de [Camino](https://camino.beta.gouv.fr), le cadastre minier numérique ouvert
 
@@ -17,26 +17,26 @@
 ---
 
 ## Installation
-### Automatiquement
-L’application se trouve sur la ressource du département MSP/DS/GSG (http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml)
-et est donc accessible via le menu Extension : Installer / Gérer les extensions.
-Camino pourra être installé, mis à jour via ce dispositif.
+### Via le dépôt MTES
+Configurer les dépôts d'extension (menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Paramètres') avec l'url suivante :
+http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml
+
+Le plugin est accessible via le menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Tout' >> 'Rechercher' camino
+Les mise à jour sont réalisées également dans ce menu.
 
 ### Manuellement
-Soit décompresser le fichier zippé (camino3.zip – mdp « qgis_dl ») qui comprend l’ensemble de l’application et de la recopier :
- - Pour les packages DS/GSG sous : "C:\ProgramFiles\QGIS\profil\python\camino3"
- - Pour la version communautaire sous "MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3"
+Décompresser le zip et installer le répertoire sous :
+ - "C:\ProgramFiles\QGIS\profil\python\camino3" pour la version QGIS packagée MTES
+ - "MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3" pour la version communautaire
 
 ---
-
-## Documentation
-La documentation [est disponible ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf).
 
 ### Flyers
 
 ![Flyer](doc/flyer1.svg)
 ![Flyer](doc/flyer2.png)
 ![Flyer](doc/flyer3.png)
+
 ---
 
 ## Structure des fichiers
@@ -49,6 +49,34 @@ La documentation [est disponible ici](https://github.com/MTES-MCT/camino-flux-QG
     └── metier           # `icones de la boite de dialogue de filtre`
 └── requete              # `dossier par défaut de sauvegarde et de chargement des requetes (filtres)`
 ```
+---
+## Prise en main
+
+### Accès au plugin
+
+Le plugin est accessible via le menu 'Extension' >> 'CAMINO (Titres MIniers)' >> 'CAMINO (Titres MIniers)'
+
+![qgis extension screenshot](doc/qgis-extension-screenshot.png)
+
+ou via la barre d'outils 
+
+![qgis toolsbar screenshot](doc/qgis-toolsbar-screenshot.png)
+
+### Utilisation
+
+Le plugin reprend le concept des filtres sur les titres de Camino et permet l'import et le chargement sous forme de couche dans QGIS des flux geojson.
+img
+
+Cliquer sur __Charger la couche__ pour importer les flux geojson et les charger dans une couche Vecteur QGIS.
+Le plugin permet :
+* d'utiliser les __filtres__ comme sur Camino,
+* d'utiliser son compte Camino, depuis l'onglet __Connexion__, et ainsi disposer d'accès restreint à certains flux. A défaut le plugin fournit uniquement les flux dits publics. 
+
+---
+
+## Documentation
+La documentation compplète au format pdf est disponible dans le plugin et également [ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf)
+
 ---
 
 ## Crédits
