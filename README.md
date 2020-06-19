@@ -3,6 +3,7 @@
 > Plugin pour QGIS d'import des flux Geojson de [Camino](https://camino.beta.gouv.fr), le cadastre minier numérique ouvert
 
 Camino API expose des flux qui permettent de récupérer les informations géographiques des titres miniers.
+
 Pour plus d'information, consultez la [documentation sur les flux de Camino](https://docs.camino.beta.gouv.fr/pages/Utilisation/04-flux.html). 
 
 Ce plugin permet d'utiliser les flux de Camino API de façon simplifiée.
