@@ -2,18 +2,13 @@
 
 > Plugin pour QGIS d'import des flux Geojson de [Camino](https://camino.beta.gouv.fr), le cadastre minier numérique ouvert
 
----           
+Camino API expose des flux qui permettent de récupérer les informations géographiques des titres miniers.
+Pour plus d'information, consultez la [documentation sur les flux de Camino](https://docs.camino.beta.gouv.fr/pages/Utilisation/04-flux.html). 
 
-## Technologies
-- [Python 3.x]
+Ce plugin permet d'utiliser les flux de Camino API de façon simplifiée.
 
----           
-
-## Environnement
- - Version de QGIS 3.12.0-București ( fonctionne en 3.x )
- - Qt 5.11.2 
- - OS Version Windows 10 (10.0)
-
+![Flyer](doc/flyer1.svg)
+![Flyer](doc/flyer2.png)![Flyer](doc/flyer3.png)
 ---
 
 ## Installation
@@ -29,18 +24,6 @@ Décompresser le zip et installer le répertoire sous :
  - "MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3" pour la version communautaire
 
 
----
-
-## Structure des fichiers
-```bash
-.                        # `Racine où se trouve les sources .py`
-│
-├── doc                  # `documentation et flyer`
-├── i18n                 # `fichiers des langues
-└── icons                # `icones de l'application, menu, barre d'outils, IHM`
-    └── metier           # `icones de la boite de dialogue de filtre`
-└── requete              # `dossier par défaut de sauvegarde et de chargement des requetes (filtres)`
-```
 ---
 ## Prise en main
 
@@ -72,12 +55,7 @@ La documentation complète au format pdf est disponible dans le plugin et égale
 
 ---
 
-### Flyers
 
-![Flyer](doc/flyer1.svg)
-![Flyer](doc/flyer2.png)
-![Flyer](doc/flyer3.png)
----
 
 ## Crédits
 
@@ -97,3 +75,29 @@ La documentation complète au format pdf est disponible dans le plugin et égale
 Camino API, le cadastre minier numérique ouvert
 
 [AGPL 3 ou plus récent](https://spdx.org/licenses/AGPL-3.0-or-later.html)
+
+---           
+=================================================
+## Technologies
+- [Python 3.x]
+
+---           
+
+## Environnement
+ - Version de QGIS 3.12.0-București ( fonctionne en 3.x )
+ - Qt 5.11.2 
+ - OS Version Windows 10 (10.0)
+
+---
+
+## Structure des fichiers
+```bash
+.                        # `Racine où se trouve les sources .py`
+│
+├── doc                  # `documentation et flyer`
+├── i18n                 # `fichiers des langues
+└── icons                # `icones de l'application, menu, barre d'outils, IHM`
+    └── metier           # `icones de la boite de dialogue de filtre`
+└── requete              # `dossier par défaut de sauvegarde et de chargement des requetes (filtres)`
+```
+=================================================
