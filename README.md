@@ -1,62 +1,75 @@
-# PLUGIN Camino-flux-QGIS
+# Camino-flux-QGIS
 
-> Plugin pour QGIS d'import des flux Geojson de [Camino](https://camino.beta.gouv.fr), le cadastre minier numérique ouvert
+> Plugin pour QGIS d'import des flux GeoJSON de [Camino](https://camino.beta.gouv.fr), le cadastre minier numérique ouvert
 
-Camino API expose des flux qui permettent de récupérer les informations géographiques des titres miniers.
+l'API de Camino expose des informations sur les titres miniers et autorisations sous forme de flux GeoJSON ([documentation](https://docs.camino.beta.gouv.fr/pages/Utilisation/04-flux.html)). 
 
-Pour plus d'information, consultez la [documentation sur les flux de Camino](https://docs.camino.beta.gouv.fr/pages/Utilisation/04-flux.html). 
+Ce plugin simplifie l'affichage de ces flux GeoJSON de Camino sous forme de couche dans QGIS.
 
-Ce plugin permet d'utiliser les flux de Camino API de façon simplifiée.
-
-![Flyer](doc/flyer1.svg)
-![Flyer](doc/flyer2.png)![Flyer](doc/flyer3.png)
 ---
 
 ## Installation
-### Via le dépôt MTES
-Configurer les dépôts d'extension (menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Paramètres') avec l'url suivante [http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml](http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml)
 
-Le plugin est accessible via le menu 'Extension' >> 'Installer/Gérer les extensions' >> onglet 'Tout' >> 'Rechercher' camino
-Les mise à jour sont réalisées également dans ce menu.
+### Via le dépôt du Ministère
+
+1. Configurer les dépôts d'extension
+Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions_, puis l'onglet _Paramètres_, ajouter l'url suivante `http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml`.
+
+2. Installer et mettre à jour l'extension 
+Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions, puis l'onglet _Tout_ et enfin _Rechercher_ `camino`.
 
 ### Manuellement
-Décompresser le zip et installer le répertoire sous :
- - "C:\ProgramFiles\QGIS\profil\python\camino3" pour la version QGIS packagée MTES
- - "MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3" pour la version communautaire
+
+1. Télécharger et décomprésser le [zip du plugin](https://github.com/MTES-MCT/camino-flux-QGIS/releases).
+2. Selon la version de QGIS utilisée, copier le contenu :
+  - pour la version communautaire : `MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3`
+  - pour la version QGIS packagée MTES : `C:\ProgramFiles\QGIS\profil\python\camino3`
 
 
 ---
-## Prise en main
 
-### Accès au plugin
+## Utilisation
 
-Le plugin est accessible via le menu 'Extension' >> 'CAMINO (Titres MIniers)' >> 'CAMINO (Titres MIniers)'
+Le plugin est accessible via : 
 
-![qgis extension screenshot](doc/qgis-extension-screenshot.png)
+- le menu _Extension / CAMINO (Titres MIniers) / CAMINO (Titres MIniers)_
 
-ou via la barre d'outils 
+![qgis extension screenshot](doc/camino-flux-qgis-extension.jpg)
 
-![qgis toolsbar screenshot](doc/qgis-toolsbar-screenshot.png)
+- la barre d'outils 
 
-### Utilisation
+![qgis toolsbar screenshot](doc/camino-flux-qgis-toolsbar.jpg)
 
-Le plugin reprend le concept des filtres sur les titres de Camino et permet l'import et le chargement sous forme de couche dans QGIS des flux geojson.
-![camino plugin screenshot](doc/camino-plugin-screenshot.png)
+### Interface
 
+![camino plugin screenshot](doc/camino-flux-qgis.jpg)
 
-Cliquer sur __Charger la couche__ pour importer les flux geojson et les charger dans une couche Vecteur QGIS.
-Le plugin permet :
-* d'utiliser les __filtres__ comme sur Camino,
-* d'utiliser son compte Camino, depuis l'onglet __Connexion__, et ainsi disposer d'accès restreint à certains flux. A défaut le plugin fournit uniquement les flux dits publics. 
+Cliquer sur _Charger la couche_ pour importer les flux geojson et les charger dans une couche Vecteur QGIS.
+
+#### Paramêtres
+
+Les résultats peuvent être filtrés par : 
+
+- types
+- domaines
+- statuts
+- noms ou siret d'entreprise
+- substances
+- etc.
+
+#### Authentification 
+
+Les utilisateurs qui possèdent un compte sur Camino, peuvent se connnecter depuis le plugin et ainsi ainsi disposer d'accès restreint à certaines informations. 
+
+Cliquer sur l'onglet _Connexion_.
 
 ---
 
 ## Documentation
-La documentation complète au format pdf est disponible dans le plugin et également [ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf)
+
+Une documentation complète au format pdf est disponible [ici](https://github.com/MTES-MCT/camino-flux-QGIS/blob/master/doc/camino_doc.pdf)
 
 ---
-
-
 
 ## Crédits
 
