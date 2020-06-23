@@ -4,7 +4,7 @@
 
 l'API de Camino expose des informations sur les titres miniers et autorisations sous forme de flux GeoJSON ([documentation](https://docs.camino.beta.gouv.fr/pages/Utilisation/04-flux.html)). 
 
-Ce plugin simplifie l'affichage de ces flux GeoJSON de Camino sous forme de couche dans QGIS.
+Ce plugin simplifie l'import de ces flux GeoJSON dans QGIS.
 
 ---
 
@@ -12,10 +12,12 @@ Ce plugin simplifie l'affichage de ces flux GeoJSON de Camino sous forme de couc
 
 ### Via le dépôt du Ministère
 
-1. Configurer les dépôts d'extension
+1. Configurer les dépôts d'extensions
+
 Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions_, puis l'onglet _Paramètres_, ajouter l'url suivante `http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml`.
 
-2. Installer et mettre à jour l'extension 
+2. Installer et mettre à jour l'extension
+
 Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions, puis l'onglet _Tout_ et enfin _Rechercher_ `camino`.
 
 ### Manuellement
