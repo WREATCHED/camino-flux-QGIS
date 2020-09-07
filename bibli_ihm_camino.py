@@ -160,7 +160,7 @@ def createIhmCritere(self) :
                        self.caseStatusTOUS
     ]
     # Id
-    mListCaseStatusCode = ["dmi", "dmc", "val", "mod", "ec", "t"]
+    mListCaseStatusCode = ["dmi", "dmc", "val", "mod", "ech", "t"]
     mDicCaseStatus = dict(zip(mListCaseStatus, mListCaseStatusCode))
     # connec      
     genereConnexion(mListCaseStatus)
