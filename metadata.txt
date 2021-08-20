@@ -10,10 +10,10 @@ changelog:
     =======================================
     ** 1.5.3 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
                Version under Qgis 3.18
-       Sauvegarde des filtres a la fermeture de la boite de dialogue de Camino
-       Restauration a l ouverture de Camino des filtres prealablement sauvegardes a la fermeture
-       Enlever l adresse du flux dans le message de la boite de dialogue lorsque la connection ne se fait pas (pour ne pas afficher le mdp et le login)
-       Affichage dans la barre de titre, le numero de la version de Camino 
+       Saving filters when closing the Camino dialog box
+       Restore when Camino is opened filters previously saved on closing
+       Remove the address of the stream in the message of the dialog box when the connection is not made (so as not to display the password and the login)
+       Display in the title bar, the number of the version of Camino 
 
     =======================================
     ** 1.5.2 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen

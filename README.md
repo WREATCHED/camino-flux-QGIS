@@ -27,9 +27,7 @@ Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions_, pui
 
 Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions, puis l'onglet _Tout_ et enfin _Rechercher_ `camino`.
 
-### Manuellement
-## Installation
-### Automatiquement
+#### Automatiquement
 L’application se trouve sur la ressource du département MSP/DS/GSG (http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml)
 et est donc accessible via le menu Extension : Installer / Gérer les extensions.
 Asgard Manager pourra être installé, mis à jour via ce dispositif.
@@ -112,7 +110,7 @@ Camino API, le cadastre minier numérique ouvert
 ---           
 
 ## Environnement
- - Version de QGIS 3.14 PI ( fonctionne en 3.x )
+ - Version de QGIS 3.18 ( fonctionne en 3.x )
  - Qt 5.11.2 
  - OS Version Windows 10 (10.0)
 
