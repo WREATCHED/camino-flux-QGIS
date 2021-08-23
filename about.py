@@ -6,6 +6,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.Qt import *
 from . import bibli_camino
 from .bibli_camino import *
+from . import bibli_ihm_camino
+from .bibli_ihm_camino import *
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -84,8 +86,7 @@ class Ui_Dialog(object):
         MonHtml += "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
         MonHtml += "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8pt;\"><span style=\" font-weight:600;\">"
         mVERSION = " = version 1.6"
-        MonHtml1 = QtWidgets.QApplication.translate("camino_about", "CAMINO (mining titles)", None) 
-        MonHtml1 += mVERSION
+        MonHtml1 = QtWidgets.QApplication.translate("camino_onglet_ui", "CAMINO (mining titles) International...", None) + "  (" + str(bibli_ihm_camino.returnVersion()) + ")" 
         MonHtml1 += "<br><br>"
         MonHtml += MonHtml1
         MonHtml += "</span>" 
@@ -112,7 +113,7 @@ class Ui_Dialog(object):
         MonHtml6 = QtWidgets.QApplication.translate("camino_about", "digital service SG/SNUM/UNI/DRC - Rouen site.", None) 
         MonHtml += MonHtml6
         MonHtml += "<br><br><i>"
-        MonHtml7 = QtWidgets.QApplication.translate("camino_about", "Development in 2020 / QGIS 3.12", None) 
+        MonHtml7 = QtWidgets.QApplication.translate("camino_about", "Development in 2020/2021 - QGIS 3.18", None) 
         MonHtml += MonHtml7
         MonHtml += "</i></p></body></html>"
 

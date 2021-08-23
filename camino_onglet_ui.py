@@ -243,12 +243,16 @@ class Ui_Dialog_Camino_onglet(object):
             modelComboAdresseCol2 = QStandardItem(str(key))
             modelComboAdresse.appendRow([modelComboAdresseCol1, modelComboAdresseCol2])
         self.comboAdresse.setModel(modelComboAdresse)
-        #========================== 
+        #==========================
+        #Restauration des filtres préalablement sauvegardés àla ferture de l'IHM  
+        bibli_ihm_camino. restoreRequestCritere(self, [self.mDicCaseDom, self.mDicCaseType, self.mDicCaseStatus,self.mDicCaseZoneLibre],
+                                                      self.mListCaseDom, self.mListCaseType, self.mListCaseStatus, self.mListZoneLibre,
+                                                       mOption="RestoreOpen")
         self.retranslateUi(Dialog)
         returnToken = ""
     #------       
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtWidgets.QApplication.translate("camino_onglet_ui", "CAMINO (mining titles) International...", None))
+        Dialog.setWindowTitle(QtWidgets.QApplication.translate("camino_onglet_ui", "CAMINO (mining titles) International...", None) + "  (" + str(bibli_ihm_camino.returnVersion()) + ")")
         self.labelCourriel.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "mail address : ", None))
         self.labelMdpCourriel.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Password : ", None))
         self.helpButton.setText(QtWidgets.QApplication.translate("camino_onglet_ui", "Help", None))

@@ -6,7 +6,11 @@ l'API de Camino expose des informations sur les titres miniers et autorisations 
 
 Ce plugin simplifie l'import de ces flux GeoJSON dans QGIS.
 
----
+---           
+## version
+- [1.5.3]
+
+---   
 
 ## Installation
 
@@ -23,13 +27,16 @@ Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions_, pui
 
 Dans le menu _Extension_, sélectionner _Installer / Gérer les extensions, puis l'onglet _Tout_ et enfin _Rechercher_ `camino`.
 
+#### Automatiquement
+L’application se trouve sur la ressource du département MSP/DS/GSG (http://piece-jointe-carto.developpement-durable.gouv.fr/NAT002/QGIS/plugins/plugins.xml)
+et est donc accessible via le menu Extension : Installer / Gérer les extensions.
+Asgard Manager pourra être installé, mis à jour via ce dispositif.
+
 ### Manuellement
+Procédez via le menu Extension : Installer / Gérer les extensions / item 'Installer depuis un zip'
 
-1. Télécharger et décomprésser le [zip du plugin](https://github.com/MTES-MCT/camino-flux-QGIS/releases).
-2. Selon la version de QGIS utilisée, copier le contenu :
-
-- pour la version communautaire : `MonProfilAMoi\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\camino3`
-- pour la version QGIS packagée MTES : `C:\ProgramFiles\QGIS\profil\python\camino3`
+![Boite de dialogue 'Installer depuis un zip'](flyers/installe_zip.png)
+---
 
 ---
 
@@ -103,7 +110,7 @@ Camino API, le cadastre minier numérique ouvert
 ---           
 
 ## Environnement
- - Version de QGIS 3.14 PI ( fonctionne en 3.x )
+ - Version de QGIS 3.18 ( fonctionne en 3.x )
  - Qt 5.11.2 
  - OS Version Windows 10 (10.0)
 

@@ -29,6 +29,7 @@ def createIhmCritere(self) :
     self.groupBoxDomTous = QtWidgets.QGroupBox(self.tab_widget_Critere)
     self.groupBoxDomTous.setGeometry(QtCore.QRect(15,280,220,30))
     self.groupBoxDomTous.setObjectName("groupBoxDomTous") 
+    self.groupBoxDomTous.setStyleSheet("QGroupBox { border : 1px solid #E4E4E4}")
     #------
     self.caseDomMINERAUX, mLibelleCase = QtWidgets.QCheckBox(self.groupBoxDom), QtWidgets.QApplication.translate("bibli_ihm_camino", "Minerals and Metals", None)
     genereObjets(self, self.caseDomMINERAUX, "caseDomMINERAUX", 10,20,250,18, mLibelleCase, "metier/domm.png", False, 0, 0)     
@@ -80,6 +81,7 @@ def createIhmCritere(self) :
     self.groupBoxTypeTous = QtWidgets.QGroupBox(self.tab_widget_Critere)
     self.groupBoxTypeTous.setGeometry(QtCore.QRect(245,280,245,30))
     self.groupBoxTypeTous.setObjectName("groupBoxTypeTous") 
+    self.groupBoxTypeTous.setStyleSheet("QGroupBox { border : 1px solid #E4E4E4}")
     #------       
     self.caseTypePROSPECTIONS, mLibelleCase = QtWidgets.QCheckBox(self.groupBoxType), QtWidgets.QApplication.translate("bibli_ihm_camino", "Authorization for pre-prospecting", None)
     genereObjets(self, self.caseTypePROSPECTIONS, "caseTypePROSPECTIONS", 10,20,250,18, mLibelleCase, "metier/typeautpro.png",
@@ -136,6 +138,7 @@ def createIhmCritere(self) :
     self.groupBoxStatutsTous = QtWidgets.QGroupBox(self.tab_widget_Critere)
     self.groupBoxStatutsTous.setGeometry(QtCore.QRect(500,190,280,30))
     self.groupBoxStatutsTous.setObjectName("groupBoxStatutsTous") 
+    self.groupBoxStatutsTous.setStyleSheet("QGroupBox { border : 1px solid #E4E4E4}")
     #------       
     self.caseStatusDEMANDEINIT, mLibelleCase = QtWidgets.QCheckBox(self.groupBoxStatuts), QtWidgets.QApplication.translate("bibli_ihm_camino", "", None)                       
     genereObjets(self, self.caseStatusDEMANDEINIT, "caseStatusDEMANDEINIT", 10,20,250,18, mLibelleCase, "metier/statutdmi_" + mLangue + ".png", False, 120, 40)     
@@ -265,6 +268,8 @@ def createIhmCritere(self) :
     self.buttonFilterSave.clicked.connect(lambda : saveRequestCritere(self, [mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
     self.buttonFilterLoad.clicked.connect(lambda : restoreRequestCritere(self, [mDicCaseDom, mDicCaseType, mDicCaseStatus,mDicCaseZoneLibre], 
                                                                                 mListCaseDom, mListCaseType, mListCaseStatus, mListZoneLibre))
+    self.mDicCaseDom, self.mDicCaseType, self.mDicCaseStatus, self.mDicCaseZoneLibre = mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre
+    self.mListCaseDom, self.mListCaseType, self.mListCaseStatus, self.mListZoneLibre =  mListCaseDom, mListCaseType, mListCaseStatus, mListZoneLibre
     #------ Bouton multi filtre  
     self.buttonFilter.clicked.connect(lambda : loadOpenResultFilterMulti(self, self.vlayer,
                                                                                     self.mySource, self.fluxTitre, self.fluxProvider))
@@ -273,15 +278,18 @@ def createIhmCritere(self) :
 
 
 #============================================ 
-def restoreRequestCritere(self,mListDico, mListCaseDom, mListCaseType, mListCaseStatus, mListZoneLibre) : 
+def restoreRequestCritere(self,mListDico, mListCaseDom, mListCaseType, mListCaseStatus, mListZoneLibre, mOption=None) : 
     carDebut, carFin = '[', ']'
     #------------
     urlDom, urlType, urlStatus                                       = "domainesIds", "typesIds", "statutsIds"
     urlCaseDico = [urlDom, urlType, urlStatus]
     urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire = "noms", "entreprises", "substances", "references", "territoires"
     urlZoneLibreDico = [urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire]
-    mFileOpen = mOpenFileName(self)[0]
-
+    if mOption == None :
+       mFileOpen = mOpenFileName(self)[0]
+    else :
+       mFileOpen = self.initDirCaminoParam + "\\CAM_DEFAUT.camino"
+       if not FileExiste(mFileOpen) : mFileOpen = '' 
     if mFileOpen != '' :
        #------------
        critDomDico, critTypeDico, critStatusDico, critZoneLibreDico = returnRequestCritere(mFileOpen, urlCaseDico, urlZoneLibreDico, carDebut, carFin)
@@ -375,9 +383,12 @@ def returnRequestCritere(mFileOpen, urlCaseDico, urlZoneLibreDico, carDebut, car
     return critDomDico, critTypeDico, critStatusDico, critZoneLibreDico      
 
 #============================================ 
-def saveRequestCritere(self, mListDico) : 
+def saveRequestCritere(self, mListDico, mOption=None) : 
     carDebut, carFin = '[', ']'
-    mFileSaveInit = "CAM_" + time.strftime("%Y%m%d_%Hh%Mm%S") + ".camino"
+    if mOption == None :
+       mFileSaveInit = "CAM_" + time.strftime("%Y%m%d_%Hh%Mm%S") + ".camino"
+    else :
+       mFileSaveInit = self.initDirCaminoParam + "\\CAM_DEFAUT.camino"
     #------------
     returListDom, returnListType, returnListStatus, returnListZoneLibre = returnValueCritere(mListDico)
     listCaseDico = [returListDom, returnListType, returnListStatus]
@@ -385,7 +396,10 @@ def saveRequestCritere(self, mListDico) :
     urlCaseDico = [urlDom, urlType, urlStatus]
     urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire = "noms", "entreprises", "substances", "references", "territoires"
     urlZoneLibreDico = [urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire]
-    mFileSave = mSaveFileName(self, mFileSaveInit)[0]
+    if mOption == None :
+       mFileSave = mSaveFileName(self, mFileSaveInit)[0]
+    else :
+       mFileSave = mFileSaveInit
     
     if mFileSave != '' :
        if (len(returListDom) + len(returnListType) + len(returnListStatus) + len(returnListZoneLibre)) == 0 :
@@ -395,6 +409,8 @@ def saveRequestCritere(self, mListDico) :
           zFileParam = open(mFileSave, "w",encoding="utf-8")
           zContenu = u"# (c) Didier  LECLERC 2020 CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen\n"
           zContenu += u"# créé le " + time.strftime("%d ") + zMyFrenchMonth(float(time.strftime("%m"))) + time.strftime(" %Y - %Hh%Mm%Ss") + "\n"
+          if mOption != None :
+             zContenu += u"# Sauvegarde du filtre à la fermeture de la boite de dialogue CAMINO\n"
           zContenu += "\n"
           #Pour les CheckBox
           for iCaseDico in range(len(urlCaseDico)) :
@@ -441,6 +457,9 @@ def genereFiltreUrl(self, mListDico) :
     else :
        urlDom, urlType, urlStatus                                       = "domainesIds", "typesIds", "statutsIds"
        urlCaseDico = [urlDom, urlType, urlStatus]
+       # Pour infos Mapping     Corresponds aux attributs
+       # "noms", "entreprises",     "substances", "references", "territoires"
+       # "nom",  "titulaires_noms", "substances", "references", "régions"
        urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire = "noms", "entreprises", "substances", "references", "territoires"
        urlZoneLibreDico = [urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire]
        urlCaseOk, mFirst, mOpe = "", True, ""
@@ -491,14 +510,16 @@ def genereFiltreUrl(self, mListDico) :
              mySource = urlMySourceLogin
        #============
        QApplication.instance().setOverrideCursor(Qt.WaitCursor)
-       vlayer = QgsVectorLayer(mySource, fluxTitre, fluxProvider)
+       vlayer = QgsVectorLayer(mySource, fluxTitre, fluxProvider) 
 
        if not vlayer.isValid():
           QApplication.instance().setOverrideCursor(Qt.ArrowCursor)
           zMessErrorLoadLayerTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning !!", None)                          
           zMessErrorLoadLayerTraduction1 = QtWidgets.QApplication.translate("bibli_ihm_camino", "Layer loading :", None)
           zMessErrorLoadLayerTraduction2 = QtWidgets.QApplication.translate("bibli_ihm_camino", "Please check your connections.", None)       
-          zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n" + str(mySource) + "\n\n" + zMessErrorLoadLayerTraduction2
+          #zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n" + str(mySource) + "\n\n" + zMessErrorLoadLayerTraduction2
+          #suppression de la source cas ou il y a le mot de passe 
+          zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n\n" + zMessErrorLoadLayerTraduction2
           QMessageBox.warning(None, zMessErrorLoadLayerTitre, zMessErrorLoadLayer)
        else :
           if urlCaseOk != "" :  #Gestion du pt ? 
@@ -644,5 +665,7 @@ def mGestionLoginCourriel(mType, mFile, mIden) :
                           if sVar_bonne_ligne == "IDEN" :
                              mIden = slistWithValue
        return mIden
+#==================================================
+def returnVersion() : return "version 1.5.3"
 #============================================ 
          

@@ -3,10 +3,18 @@ name = CAMINO Mining titles and authorizations
 description=CAMINO Mining titles and authorizations
 about=This plugin completes Camino's geographic flow supply service, the Open Digital Mining Cadastre, a web application from the French Ministry of Ecological and Solidarity Transision.
 category = Tools
-version=1.5.2
+version=1.5.3
 qgisMinimumVersion=3.0
 # Optional items:
 changelog:
+    =======================================
+    ** 1.5.3 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.18
+       Saving filters when closing the Camino dialog box
+       Restore when Camino is opened filters previously saved on closing
+       Remove the address of the stream in the message of the dialog box when the connection is not made (so as not to display the password and the login)
+       Display in the title bar, the number of the version of Camino 
+
     =======================================
     ** 1.5.2 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
                Version under Qgis 3.12
