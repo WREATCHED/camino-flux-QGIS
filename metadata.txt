@@ -1,0 +1,87 @@
+[general]
+name = CAMINO Mining titles and authorizations 
+description=CAMINO Mining titles and authorizations
+about=This plugin completes Camino's geographic flow supply service, the Open Digital Mining Cadastre, a web application from the French Ministry of Ecological and Solidarity Transision.
+category = Tools
+version=1.6.0
+qgisMinimumVersion=3.0
+# Optional items:
+changelog:
+    =======================================
+    ** 1.6.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.20
+       Saving filters when closing the Camino dialog box
+       Modification of the GUI to load the layers by territories:
+       * Creation of five buttons to load:
+         ** All
+         ** Metropolis
+         ** Guyana
+         ** Indian Ocean
+         ** West Indies
+
+    =======================================
+    ** 1.5.3 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.18
+       Saving filters when closing the Camino dialog box
+       Restore when Camino is opened filters previously saved on closing
+       Remove the address of the stream in the message of the dialog box when the connection is not made (so as not to display the password and the login)
+       Display in the title bar, the number of the version of Camino 
+
+    =======================================
+    ** 1.5.2 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       fix request 'echus'
+														   
+    =======================================
+    =======================================
+    ** 1.5.1 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Change Url tracker
+	   Relocating parameter files under the user profile
+														   
+    =======================================
+    =======================================																	 								  					   							   
+    ** 1.5.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Changing the ihm (tabs) 
+    =======================================
+    =======================================
+    ** 1.4.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Management of the logins entry : (Email / Login / Without) 
+    =======================================
+    =======================================
+    ** 1.3.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Management of the new API URL (Feeds vs API plus format) 
+    =======================================
+    =======================================
+    ** 1.2.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Display of an additional tab and GUI for filter management 
+    =======================================
+    =======================================
+    ** 1.1.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       Tab display and filter management 
+       ** one line ==> Double click     
+       ** multi lines ==> Single click     
+    =======================================
+    =======================================
+    ** 1.0.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.12
+       CAMINO manages the valid mining titles and the initial or modifying applications related to them, both public and under investigation.        
+    =======================================
+ 
+tags= CAMINO, Mining Titles, Authorizations
+homepage=https://camino.beta.gouv.fr
+tracker=https://github.com/MTES-MCT/camino-flux-QGIS/issues
+repository=https://github.com/MTES-MCT/camino-flux-QGIS
+icon=icons/camino.png 
+experimental=False
+deprecated=False
+
+# Author contact information
+author=Camino Digital Factory - MTES-MCTRCT
+email=camino@beta.gouv.fr
+class_name=CAMINO
