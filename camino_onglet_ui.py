@@ -37,7 +37,19 @@ class Ui_Dialog_Camino_onglet(object):
         #=====================================================
         #Path user profil camino
         self.initDirCaminoParam = QgsApplication.qgisSettingsDirPath().replace("\\","/") + "camino3param"
-     
+        mDic_LH = bibli_camino.returnAndSaveDialogParam(self, "Load")
+        self.mDic_LH = mDic_LH      
+        self.UrlcaminoDefaut     = self.mDic_LH["URLCAMINO"]
+        self.ToutLibelle         = self.mDic_LH["TOUTLIBELLE"]
+        self.ToutCoord           = self.mDic_LH["TOUTCoord"]
+        self.MetropoleLibelle    = self.mDic_LH["METROPOLELIBELLE"]
+        self.MetropoleCoord      = self.mDic_LH["METROPOLECoord"]
+        self.GuyaneLibelle       = self.mDic_LH["GUYANELIBELLE"]
+        self.GuyaneCoord         = self.mDic_LH["GUYANECoord"]
+        self.OceanIndienLibelle  = self.mDic_LH["OCEANINDIENLIBELLE"]
+        self.OceanIndienCoord    = self.mDic_LH["OCEANINDIENCoord"]
+        self.AntillesLibelle     = self.mDic_LH["ANTILLESLIBELLE"]
+        self.AntillesCoord       = self.mDic_LH["ANTILLESCoord"]
         #=====================================================
         #Image
         self.labelImage = QtWidgets.QLabel(Dialog)

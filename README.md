@@ -8,7 +8,7 @@ Ce plugin simplifie l'import de ces flux GeoJSON dans QGIS.
 
 ---           
 ## version
-- [1.5.3]
+- [1.6.0]
 
 ---   
 
@@ -91,7 +91,7 @@ Une documentation complète au format pdf est disponible [ici](https://github.co
 
 ### Équipe
 
-- Didier LECLERC, CMSIG développeur MTES/MCTRCT SG/SNUM/UNI/DRC
+- Didier LECLERC, CMSIG Copnception et développement MTE/MCTRCT SG/SNUM/UNI/DRC
 - Nicolas PETITOT, Développeur Camino, Appui métier pour Qgis
 
 ---
