@@ -231,13 +231,66 @@ def createIhmCritere(self) :
     #Groupe gestion filtre avec boutons
     self.groupBoxFiltre = QtWidgets.QGroupBox(self.tab_widget_Critere)
     self.groupBoxFiltre.setGeometry(QtCore.QRect(15,320,475,80))
-    self.groupBoxFiltre.setObjectName("groupBoxFiltre")                                       
+    self.groupBoxFiltre.setObjectName("groupBoxFiltre")
+    
+    _hgroupBoxFiltre = self.groupBoxFiltre.height() 
+    _lgroupBoxFiltre = self.groupBoxFiltre.width()
+    _ecartButton = 10
+    _sizeWidthButton = (_lgroupBoxFiltre - (6 * _ecartButton)) / 5  
+    _yButton = 15  
+    _sizeHeigthButton = 23  
+    #boutons territoires 
+    self.buttonTout = QtWidgets.QPushButton(self.groupBoxFiltre)
+    self.buttonTout.setGeometry(QtCore.QRect((1 * _ecartButton) + (0 * _sizeWidthButton), _yButton, _sizeWidthButton, _sizeHeigthButton))
+    self.buttonTout.setObjectName("buttonTout")
+    self.buttonTout.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", self.ToutLibelle, None))
+    self.buttonTout.setVisible(True)
+    self.buttonTout.setStyleSheet("QPushButton { border-style: outset; border-width: 1px; border-radius: 10px; border-color: #958B62; font: bold 10px; padding: 3px; }")    
+    self.buttonTout.clicked.connect(lambda : genereFiltreUrlTerritoires(self, self.buttonTout, [mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
+    #-
+    self.buttonMetropole = QtWidgets.QPushButton(self.groupBoxFiltre)
+    self.buttonMetropole.setGeometry(QtCore.QRect((2 * _ecartButton) + (1 * _sizeWidthButton), _yButton, _sizeWidthButton, _sizeHeigthButton))
+    self.buttonMetropole.setObjectName("buttonMetropole")
+    self.buttonMetropole.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", self.MetropoleLibelle, None))
+    self.buttonMetropole.setVisible(True)
+    self.buttonMetropole.setStyleSheet("QPushButton { border-style: outset; border-width: 1px; border-radius: 10px; border-color: #958B62; font: bold 10px; padding: 3px; }")    
+    self.buttonMetropole.clicked.connect(lambda : genereFiltreUrlTerritoires(self, self.buttonMetropole, [mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
+    #-
+    self.buttonGuyane = QtWidgets.QPushButton(self.groupBoxFiltre)
+    self.buttonGuyane.setGeometry(QtCore.QRect((3 * _ecartButton) + (2 * _sizeWidthButton) , _yButton, _sizeWidthButton, _sizeHeigthButton))
+    self.buttonGuyane.setObjectName("buttonGuyane")
+    self.buttonGuyane.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", self.GuyaneLibelle, None))
+    self.buttonGuyane.setVisible(True)
+    self.buttonGuyane.setStyleSheet("QPushButton { border-style: outset; border-width: 1px; border-radius: 10px; border-color: #958B62; font: bold 10px; padding: 3px; }")    
+    self.buttonGuyane.clicked.connect(lambda : genereFiltreUrlTerritoires(self, self.buttonGuyane, [mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
+    #-
+    self.buttonOceanIndien = QtWidgets.QPushButton(self.groupBoxFiltre)
+    self.buttonOceanIndien.setGeometry(QtCore.QRect((4 * _ecartButton) + (3 * _sizeWidthButton) , _yButton, _sizeWidthButton, _sizeHeigthButton))
+    self.buttonOceanIndien.setObjectName("buttonOceanIndien")
+    self.buttonOceanIndien.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", self.OceanIndienLibelle, None))
+    self.buttonOceanIndien.setVisible(True)
+    self.buttonOceanIndien.setStyleSheet("QPushButton { border-style: outset; border-width: 1px; border-radius: 10px; border-color: #958B62; font: bold 10px; padding: 3px; }")    
+    self.buttonOceanIndien.clicked.connect(lambda : genereFiltreUrlTerritoires(self, self.buttonOceanIndien, [mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
+    #-
+    self.buttonAntilles = QtWidgets.QPushButton(self.groupBoxFiltre)
+    self.buttonAntilles.setGeometry(QtCore.QRect((5 * _ecartButton) + (4 * _sizeWidthButton) , _yButton, _sizeWidthButton, _sizeHeigthButton))
+    self.buttonAntilles.setObjectName("buttonAntilles")
+    self.buttonAntilles.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", self.AntillesLibelle, None))
+    self.buttonAntilles.setVisible(True)
+    self.buttonAntilles.setStyleSheet("QPushButton { border-style: outset; border-width: 1px; border-radius: 10px; border-color: #958B62; font: bold 10px; padding: 3px; }")    
+    self.buttonAntilles.clicked.connect(lambda : genereFiltreUrlTerritoires(self, self.buttonAntilles, [mDicCaseDom, mDicCaseType, mDicCaseStatus, mDicCaseZoneLibre]))
+    #-
+    #boutons territoires 
+                                          
     #Filtre bouton filtre criteres 
     self.buttonFilterCritere = QtWidgets.QPushButton(self.groupBoxFiltre)
-    self.buttonFilterCritere.setGeometry(QtCore.QRect(330, 26, 120, 30))
+    self.buttonFilterCritere.setGeometry(QtCore.QRect(305,  _hgroupBoxFiltre - 34, 150, 33))
     self.buttonFilterCritere.setObjectName("buttonFilterCritere")
     self.buttonFilterCritere.setStyleSheet("QPushButton { color: red; }")
-    self.buttonFilterCritere.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", "layer loading", None))
+    #self.buttonFilterCritere.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", "layer loading", None))
+    _buttonFilterCritereText  =        QtWidgets.QApplication.translate("bibli_ihm_camino", "layer loading", None)
+    _buttonFilterCritereText += "\n" + QtWidgets.QApplication.translate("bibli_ihm_camino", "from the list of layers", None)
+    self.buttonFilterCritere.setText(_buttonFilterCritereText)
     self.buttonFilterCritere.setVisible(True)
     self.buttonFilterCritere.setStyleSheet("QPushButton {\
                                 color: red;              \
@@ -245,20 +298,20 @@ def createIhmCritere(self) :
                                 border-width: 2px;       \
                                 border-radius: 10px;     \
                                 border-color: blue;      \
-                                font: bold 11px;         \
-                                padding: 6px;            \
+                                font: bold 9px;         \
+                                padding: 3px;            \
                                 }")    
     #------   
     #Filtre bouton Sauvegarde filtre
     self.buttonFilterSave = QtWidgets.QPushButton(self.groupBoxFiltre)
-    self.buttonFilterSave.setGeometry(QtCore.QRect(180, 30, 120, 23))
+    self.buttonFilterSave.setGeometry(QtCore.QRect(165, _hgroupBoxFiltre - 30, 120, 23))
     self.buttonFilterSave.setObjectName("buttonFilterSave")
     self.buttonFilterSave.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", "save the filter", None))
     self.buttonFilterSave.setVisible(True)
     #------       
     #Filtre bouton charger filtre
     self.buttonFilterLoad = QtWidgets.QPushButton(self.groupBoxFiltre)
-    self.buttonFilterLoad.setGeometry(QtCore.QRect(30, 30, 120, 23))
+    self.buttonFilterLoad.setGeometry(QtCore.QRect(25,  _hgroupBoxFiltre - 30, 120, 23))
     self.buttonFilterLoad.setObjectName("buttonFilterLoad")
     self.buttonFilterLoad.setText(QtWidgets.QApplication.translate("bibli_ihm_camino", "filter loading", None))
     self.buttonFilterLoad.setVisible(True)
@@ -447,6 +500,131 @@ def mSaveFileName(self, mFileSaveInit):
     return fileName
     
 #============================================ 
+def genereFiltreUrlTerritoires(self, mButton, mListDico) : 
+    returListDom, returnListType, returnListStatus, returnListZoneLibre = returnValueCritere(mListDico)
+    listCaseDico = [returListDom, returnListType, returnListStatus]
+
+    if (len(returListDom) + len(returnListType) + len(returnListStatus) + len(returnListZoneLibre)) == 0 :
+        QMessageBox.warning(None,QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning", None),
+                                 QtWidgets.QApplication.translate("bibli_ihm_camino", "No criteria entered.", None))
+    else :
+       urlDom, urlType, urlStatus                                       = "domainesIds", "typesIds", "statutsIds"
+       urlCaseDico = [urlDom, urlType, urlStatus]
+       # Pour infos Mapping     Corresponds aux attributs
+       # "noms", "entreprises",     "substances", "references", "territoires"
+       # "nom",  "titulaires_noms", "substances", "references", "régions"
+       urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire = "noms", "entreprises", "substances", "references", "territoires"
+       urlZoneLibreDico = [urlNom, urlEntreprise, urlSubstance, urlReference, urlTerritoire]
+       urlCaseOk, mFirst, mOpe = "", True, ""
+       #Pour les CheckBox
+       for iCaseDico in range(len(urlCaseDico)) :
+           if len(listCaseDico[iCaseDico]) != 0 :
+              urlCaseDico[iCaseDico] += "={}".format(','.join(mIds for mIds in listCaseDico[iCaseDico])) 
+              urlCaseOk =  urlCaseOk + mOpe + urlCaseDico[iCaseDico]
+              if mFirst : mFirst, mOpe = False, "&"
+       #Pour les QlineEdit (Zones Libres)
+       for iZoneLibreDico in range(len(urlZoneLibreDico)) :
+           if returnListZoneLibre[iZoneLibreDico] != '' :
+              urlZoneLibreDico[iZoneLibreDico] += "=" + returnListZoneLibre[iZoneLibreDico].replace(" ","%20")
+              urlCaseOk =  urlCaseOk + mOpe + urlZoneLibreDico[iZoneLibreDico]
+              if mFirst : mFirst, mOpe = False, "&"
+    #=============
+    idenCourriel = self.textEditCourriel.toPlainText()
+    mdpCourriel  = self.textEditMdpCourriel.toPlainText()     
+    mContinue = False
+    
+    if self.radioOptionMdp3.isChecked() :
+       if (idenCourriel == "" or mdpCourriel == "") :
+          myTokenTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning !!", None)
+          myToken = QtWidgets.QApplication.translate("bibli_ihm_camino", "Please enter your mail address and password please.", None)
+          QMessageBox.warning(None, myTokenTitre,myToken)
+       else :
+          mGestionLoginCourriel("SAVE", self.monFichierPathLoginCourriel, idenCourriel) 
+          mContinue = True
+    else :
+       mContinue = True
+
+    if mContinue :
+       #Charge le flux camino teste si la couche t valide et après le résultat
+       #Gestion des territoires                                                              
+       _urlDefaut = self.UrlcaminoDefaut
+       if mButton.objectName()   == "buttonTout" :
+          mySource  = _urlDefaut   
+          fluxTitre = self.ToutLibelle
+       elif mButton.objectName() == "buttonMetropole" :
+          mySource  = _urlDefaut + "&perimetre=" + "&perimetre=".join(self.MetropoleCoord)   
+          fluxTitre = self.MetropoleLibelle
+       elif mButton.objectName() == "buttonGuyane" : 
+          mySource  = _urlDefaut + "&perimetre=" + "&perimetre=".join(self.GuyaneCoord)   
+          fluxTitre = self.GuyaneLibelle
+       elif mButton.objectName() == "buttonOceanIndien" : 
+          mySource  = _urlDefaut + "&perimetre=" + "&perimetre=".join(self.OceanIndienCoord)   
+          fluxTitre = self.OceanIndienLibelle
+       elif mButton.objectName() == "buttonAntilles" : 
+          mySource  = _urlDefaut + "&perimetre=" + "&perimetre=".join(self.AntillesCoord)   
+          fluxTitre = self.AntillesLibelle
+       fluxProvider = 'ogr' 
+       #============
+       #Gestion de l'adresse et du login
+       mFindCaminoAdresse, mCodeUrl, mSepMdp, mSepAdresse = "https://", "%40", ":", "@"  
+       mPos = mySource.find(mFindCaminoAdresse)
+       if mPos == -1 :
+          urlMySourceLogin = mySource
+       else :
+          if self.radioOptionMdp3.isChecked() :
+             idenCourriel = idenCourriel.replace(mSepAdresse, mCodeUrl)
+             urlMySourceLogin = mySource[0:len(mFindCaminoAdresse)] + idenCourriel + mSepMdp + mdpCourriel + mSepAdresse + mySource[len(mFindCaminoAdresse):]
+             mySource = urlMySourceLogin
+       #============
+       QApplication.instance().setOverrideCursor(Qt.WaitCursor)
+       vlayer = QgsVectorLayer(mySource, fluxTitre, fluxProvider) 
+
+       if not vlayer.isValid():
+          QApplication.instance().setOverrideCursor(Qt.ArrowCursor)
+          zMessErrorLoadLayerTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning !!", None)                          
+          zMessErrorLoadLayerTraduction1 = QtWidgets.QApplication.translate("bibli_ihm_camino", "Layer loading :", None)
+          zMessErrorLoadLayerTraduction2 = QtWidgets.QApplication.translate("bibli_ihm_camino", "Please check your connections.", None)       
+          #zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n" + str(mySource) + "\n\n" + zMessErrorLoadLayerTraduction2
+          #suppression de la source cas ou il y a le mot de passe 
+          zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n\n" + zMessErrorLoadLayerTraduction2
+          QMessageBox.warning(None, zMessErrorLoadLayerTitre, zMessErrorLoadLayer)
+       else :
+          if urlCaseOk != "" :  #Gestion du pt ? 
+             if mySource.find("?") == -1 :
+                mySource += "?" + urlCaseOk
+             else :
+                mySource += "&" + urlCaseOk
+             #Gestion du nom de la couche si mdp ou pas
+             fluxTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Camino => Filter with criteria", None)
+           
+          vlayer = QgsVectorLayer(mySource, fluxTitre, fluxProvider)
+          if not vlayer.isValid():
+             QApplication.instance().setOverrideCursor(Qt.ArrowCursor)
+             zMessErrorLoadLayerTitre = QtWidgets.QApplication.translate("bibli_ihm_camino", "Warning !!", None)                          
+             zMessErrorLoadLayerTraduction1 = QtWidgets.QApplication.translate("bibli_ihm_camino", "Layer loading :", None)
+             zMessErrorLoadLayerTraduction2 = QtWidgets.QApplication.translate("bibli_ihm_camino", "No results.", None)       
+             zMessErrorLoadLayer = zMessErrorLoadLayerTraduction1 + " "  + str(fluxTitre) + "\n" + str(mySource) + "\n\n" + zMessErrorLoadLayerTraduction2
+             QMessageBox.warning(None, zMessErrorLoadLayerTitre, zMessErrorLoadLayer)
+          else :
+             #------     
+             fluxAdresse = mySource
+             #------     
+             self.resultTextEdit.clear()
+             zMess = self.zMess
+             zMess += self.zMess3 + " : \t" + str(fluxAdresse) + "\n"
+             zMess += self.zMess4 + " : \t" + str(fluxTitre) + "\n"
+             zMess += self.zMess5 + " : \t" + str(fluxProvider)
+             self.resultTextEdit.setText(zMess)       
+             #------  
+             self.mySource,self.fluxTitre,self.fluxProvider = mySource,fluxTitre,fluxProvider
+             QApplication.instance().setOverrideCursor(Qt.WaitCursor)
+             openLayer(self, self.mySource,self.fluxTitre,self.fluxProvider)               
+             QApplication.instance().setOverrideCursor(Qt.ArrowCursor)
+             
+    #=============
+    return
+
+#============================================ 
 def genereFiltreUrl(self, mListDico) : 
     returListDom, returnListType, returnListStatus, returnListZoneLibre = returnValueCritere(mListDico)
     listCaseDico = [returListDom, returnListType, returnListStatus]
@@ -547,7 +725,6 @@ def genereFiltreUrl(self, mListDico) :
              zMess += self.zMess3 + " : \t" + str(fluxAdresse) + "\n"
              zMess += self.zMess4 + " : \t" + str(fluxTitre) + "\n"
              zMess += self.zMess5 + " : \t" + str(fluxProvider)
-             print(zMess)
              self.resultTextEdit.setText(zMess)       
              #------  
              self.mySource,self.fluxTitre,self.fluxProvider = mySource,fluxTitre,fluxProvider
@@ -666,6 +843,6 @@ def mGestionLoginCourriel(mType, mFile, mIden) :
                              mIden = slistWithValue
        return mIden
 #==================================================
-def returnVersion() : return "version 1.5.3"
+def returnVersion() : return "version 1.6.0"
 #============================================ 
          

@@ -233,12 +233,49 @@ def openLayerFilterSimpleClick(self, mySource,fluxTitre,fluxProvider, mRequest):
     else :   
        self.resulFilter.setText(QtWidgets.QApplication.translate("bibli_camino", "", None))
        QgsProject.instance().addMapLayer(vlayer)
-       print("je passe")
        vlayer.setSubsetString(mRequest)
        mCanvas = iface.mapCanvas()
        mCanvas.setExtent(vlayer.extent())
        QApplication.instance().setOverrideCursor(Qt.ArrowCursor)                
     return
+
+#==================================================
+#Lecture du fichier ini
+#==================================================
+def returnAndSaveDialogParam(self, mAction):
+    mDicUserSettings        = {}
+    mSettings = QgsSettings()
+    mSettings.beginGroup("CAMINO")
+    
+    if mAction == "Load" :
+       #Ajouter si autre param
+       #======================
+       # liste des Paramétres UTILISATEURS
+       mSettings.beginGroup("Generale")
+       #Ajouter si autre param
+       mDicUserSettings["URLCAMINO"]               = "https://api.camino.beta.gouv.fr/titres?format=geojson"
+       mDicUserSettings["TOUTLIBELLE"]             = "Tout Afficher"
+       mDicUserSettings["TOUTCoord"]               = ""
+       mDicUserSettings["METROPOLELIBELLE"]        = "Métropole"
+       mDicUserSettings["METROPOLECoord"]          = [-17.116699218750004, 41.672911819602085, 22.126464843750004, 50.42951794712289]
+       mDicUserSettings["GUYANELIBELLE"]           = "Guyane"
+       mDicUserSettings["GUYANECoord"]             = [-57.40356445312501, 3.924539892198443, -47.59277343750001, 7.073636704289109]
+       mDicUserSettings["OCEANINDIENLIBELLE"]      = "Océan Indien"
+       mDicUserSettings["OCEANINDIENCoord"]        = [28.872070312500004, -23.966175871265044, 68.11523437500001, -11.953349393643416]
+       mDicUserSettings["ANTILLESLIBELLE"]         = "Antilles"
+       mDicUserSettings["ANTILLESCoord"]           = [-66.40686035156251, 13.971384799655755, -56.59606933593751, 17.020020181668386]
+       #----
+       for key, value in mDicUserSettings.items():
+           if not mSettings.contains(key) :
+              mSettings.setValue(key, value)
+           else :
+              mDicUserSettings[key] = mSettings.value(key)           
+       # liste des Paramétres UTILISATEURS
+       #======================
+
+    mSettings.endGroup()
+    mSettings.endGroup()    
+    return mDicUserSettings
                 
 #==================================================
 #Lecture du fichier paramètre
