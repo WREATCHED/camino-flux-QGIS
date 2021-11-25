@@ -257,13 +257,13 @@ def returnAndSaveDialogParam(self, mAction):
        mDicUserSettings["TOUTLIBELLE"]             = "Tout Afficher"
        mDicUserSettings["TOUTCoord"]               = ""
        mDicUserSettings["METROPOLELIBELLE"]        = "Métropole"
-       mDicUserSettings["METROPOLECoord"]          = [-17.116699218750004, 41.672911819602085, 22.126464843750004, 50.42951794712289]
+       mDicUserSettings["METROPOLECoord"]          = [-5, 41, 10, 51]
        mDicUserSettings["GUYANELIBELLE"]           = "Guyane"
-       mDicUserSettings["GUYANECoord"]             = [-57.40356445312501, 3.924539892198443, -47.59277343750001, 7.073636704289109]
+       mDicUserSettings["GUYANECoord"]             = [-55, 6, -51, 2]
        mDicUserSettings["OCEANINDIENLIBELLE"]      = "Océan Indien"
-       mDicUserSettings["OCEANINDIENCoord"]        = [28.872070312500004, -23.966175871265044, 68.11523437500001, -11.953349393643416]
+       mDicUserSettings["OCEANINDIENCoord"]        = [39, -23, 58, -13]
        mDicUserSettings["ANTILLESLIBELLE"]         = "Antilles"
-       mDicUserSettings["ANTILLESCoord"]           = [-66.40686035156251, 13.971384799655755, -56.59606933593751, 17.020020181668386]
+       mDicUserSettings["ANTILLESCoord"]           = [-64, 15, -59, 16]
        #----
        for key, value in mDicUserSettings.items():
            if not mSettings.contains(key) :
