@@ -90,4 +90,3 @@ deprecated=False
 author=Camino Digital Factory - MTES-MCTRCT
 email=camino@beta.gouv.fr
 class_name=CAMINO
-
