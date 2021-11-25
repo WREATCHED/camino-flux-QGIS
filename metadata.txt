@@ -8,6 +8,11 @@ qgisMinimumVersion=3.0
 # Optional items:
 changelog:
     =======================================
+    ** 1.6.1 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
+               Version under Qgis 3.20
+       * Change of initial coordinates for areas of territories
+
+    =======================================
     ** 1.6.0 : Didier LECLERC CMSIG MTES-MCTRCT/SG/SNUM/UNI/DRC Site de Rouen
                Version under Qgis 3.20
        Saving filters when closing the Camino dialog box
