@@ -8,7 +8,7 @@ Ce plugin simplifie l'import de ces flux GeoJSON dans QGIS.
 
 ---           
 ## version
-- [1.6.0]
+- [1.7.0]
 
 ---   
 
@@ -56,7 +56,9 @@ Le plugin est accessible via :
 
 ![camino plugin screenshot](doc/camino-flux-qgis.jpg)
 
-Cliquer sur _Charger la couche_ pour importer les flux geojson et les charger dans une couche Vecteur QGIS.
+- Cliquez sur _Charger la couche depuis la liste des couches_ pour importer les flux geojson et les charger dans une couche Vecteur QGIS
+ou
+- Cliquez sur l'un des cinq boutons prédéfinis par zone territoriales
 
 #### Paramêtres
 
